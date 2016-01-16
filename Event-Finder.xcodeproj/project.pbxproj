@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75D600DF1C4AEC7700637BBA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D600DE1C4AEC7700637BBA /* CoreLocation.framework */; };
+		75D600E11C4AEC7E00637BBA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D600E01C4AEC7E00637BBA /* MapKit.framework */; };
 		F109EE4C1C4ADEFD00B096D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EE4B1C4ADEFD00B096D2 /* main.m */; };
 		F109EE4F1C4ADEFD00B096D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EE4E1C4ADEFD00B096D2 /* AppDelegate.m */; };
 		F109EE521C4ADEFD00B096D2 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EE511C4ADEFD00B096D2 /* FirstViewController.m */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		75D600DE1C4AEC7700637BBA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		75D600E01C4AEC7E00637BBA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F109EE471C4ADEFD00B096D2 /* Event-Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Event-Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F109EE4B1C4ADEFD00B096D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F109EE4D1C4ADEFD00B096D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75D600E11C4AEC7E00637BBA /* MapKit.framework in Frameworks */,
+				75D600DF1C4AEC7700637BBA /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +93,8 @@
 		F109EE3E1C4ADEFD00B096D2 = {
 			isa = PBXGroup;
 			children = (
+				75D600E01C4AEC7E00637BBA /* MapKit.framework */,
+				75D600DE1C4AEC7700637BBA /* CoreLocation.framework */,
 				F109EE491C4ADEFD00B096D2 /* Event-Finder */,
 				F109EE661C4ADEFD00B096D2 /* Event-FinderTests */,
 				F109EE711C4ADEFD00B096D2 /* Event-FinderUITests */,
@@ -508,6 +516,7 @@
 				F109EE791C4ADEFD00B096D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F109EE7A1C4ADEFD00B096D2 /* Build configuration list for PBXNativeTarget "Event-FinderTests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +525,7 @@
 				F109EE7C1C4ADEFD00B096D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F109EE7D1C4ADEFD00B096D2 /* Build configuration list for PBXNativeTarget "Event-FinderUITests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +534,7 @@
 				F109EE7F1C4ADEFD00B096D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
