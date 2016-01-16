@@ -11,6 +11,8 @@
 
 @interface CreateEventViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *eventTitle;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionText;
+@property (weak, nonatomic) IBOutlet UITextField *addressText;
 
 @end
 
@@ -30,6 +32,10 @@
     PFObject *event = [PFObject objectWithClassName:@"Event"];
     event[@"title"] = self.eventTitle.text;
     event[@"public"] = @YES;
+    event[@"startTime"] = self.startTime.date;
+    event[@"endTime"] = self.endTime.date;
+    event[@"description"] = self.descriptionText.text;
+    event[@"address"] = self.addressText.text;
     [event saveInBackground];
 }
 
