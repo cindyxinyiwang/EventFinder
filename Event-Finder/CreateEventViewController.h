@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CreateEventViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIDatePicker *startTime;
+@property (weak, nonatomic) IBOutlet UIDatePicker *endTime;
 
 @end
