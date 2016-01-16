@@ -99,10 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				75D600E11C4AEC7E00637BBA /* MapKit.framework in Frameworks */,
 				75D600DF1C4AEC7700637BBA /* CoreLocation.framework in Frameworks */,
-=======
 				F109EE9F1C4AEDB900B096D2 /* libsqlite3.tbd in Frameworks */,
 				F109EE9D1C4AEDAA00B096D2 /* libz.tbd in Frameworks */,
 				F109EE9B1C4AED9000B096D2 /* CFNetwork.framework in Frameworks */,
@@ -117,7 +115,6 @@
 				F109EE991C4AED6A00B096D2 /* Bolts.framework in Frameworks */,
 				F109EE871C4AEC0E00B096D2 /* Foundation.framework in Frameworks */,
 				F109EE851C4AEC0600B096D2 /* AudioToolbox.framework in Frameworks */,
->>>>>>> d9244f39367c2cec4e9f2f776c6206ad692ea84e
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,10 +138,8 @@
 		F109EE3E1C4ADEFD00B096D2 = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				75D600E01C4AEC7E00637BBA /* MapKit.framework */,
 				75D600DE1C4AEC7700637BBA /* CoreLocation.framework */,
-=======
 				F109EE9E1C4AEDB900B096D2 /* libsqlite3.tbd */,
 				F109EE9C1C4AEDAA00B096D2 /* libz.tbd */,
 				F109EE9A1C4AED9000B096D2 /* CFNetwork.framework */,
@@ -159,7 +154,6 @@
 				F109EE881C4AEC1700B096D2 /* CoreGraphics.framework */,
 				F109EE861C4AEC0E00B096D2 /* Foundation.framework */,
 				F109EE841C4AEC0600B096D2 /* AudioToolbox.framework */,
->>>>>>> d9244f39367c2cec4e9f2f776c6206ad692ea84e
 				F109EE491C4ADEFD00B096D2 /* Event-Finder */,
 				F109EE661C4ADEFD00B096D2 /* Event-FinderTests */,
 				F109EE711C4ADEFD00B096D2 /* Event-FinderUITests */,

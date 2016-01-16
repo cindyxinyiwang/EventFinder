@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-<<<<<<< HEAD
     // Do any additional setup after loading the view, typically from a nib.
     self.locationManger = [[CLLocationManager alloc] init];
     #ifdef __IPHONE_8_0
@@ -55,15 +54,6 @@
                      }
                  }
      ];
-=======
-    /*
-    PFObject *event = [PFObject objectWithClassName:@"Event"];
-    event[@"endTime"] = @"8:00pm";
-    event[@"startTime"] = @"6:00pm";
-    [event saveInBackground];
-    */
-    self.Title.text = @"Hello";
->>>>>>> d9244f39367c2cec4e9f2f776c6206ad692ea84e
 }
 
 - (void)didReceiveMemoryWarning {
