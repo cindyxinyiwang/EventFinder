@@ -7,8 +7,10 @@
 //
 
 #import "FirstViewController.h"
+#import <Parse/Parse.h>
 
 @interface FirstViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *Title;
 
 @end
 
@@ -16,7 +18,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    /*
+    PFObject *event = [PFObject objectWithClassName:@"Event"];
+    event[@"endTime"] = @"8:00pm";
+    event[@"startTime"] = @"6:00pm";
+    [event saveInBackground];
+    */
+    self.Title.text = @"Hello";
 }
 
 - (void)didReceiveMemoryWarning {
