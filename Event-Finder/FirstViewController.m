@@ -104,7 +104,7 @@
 
 // picker view setup
 // The number of columns of data
-- (int)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
 }

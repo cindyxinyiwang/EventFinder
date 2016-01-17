@@ -10,6 +10,7 @@
 
 @interface SecondViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *MyEventTableView;
 
 @end
 
