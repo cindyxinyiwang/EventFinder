@@ -9,9 +9,13 @@
 #import "FirstViewController.h"
 #import <Parse/Parse.h>
 
-@interface FirstViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *Title;
 
+@interface FirstViewController ()
+{
+    NSArray *_pickerData;
+}
+@property (weak, nonatomic) IBOutlet UILabel *Title;
+@property (weak, nonatomic) IBOutlet UITextField *sortByTextField;
 @end
 
 @implementation FirstViewController
@@ -27,33 +31,29 @@
         [self.locationManger requestWhenInUseAuthorization];
     }
     #endif
-    [self.locationManger requestWhenInUseAuthorization];
     [self.locationManger startUpdatingLocation];
     
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
     
     [self loadEventsOnMap];
-    //NSString *location = @"450 Serra Mall, Stanford, CA 94305";
-    //[self loadAdrressOnMap:location];
+    
+    // Initialize picker data
+    _pickerData = @[@"Proximity", @"Price", @"Size"];
+    self.sortPicker.dataSource = self;
+    self.sortPicker.delegate = self;
+    
+    
+    UIPickerView *picker = [[UIPickerView alloc] init];
+    picker.dataSource = self;
+    picker.delegate = self;
+    self.sortByTextField.inputView = picker;
+
 }
 
 - (void)loadEventsOnMap {
     //NSString *location = @"450 Serra Mall, Stanford, CA 94305";
     PFQuery *eventsQuery = [PFQuery queryWithClassName:@"Event"];
-    /*
-    [eventsQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (!error) {
-            // find succeeded.
-            NSLog(@"Succeesfully found %lu events", objects.count);
-            for (PFObject *object in objects) {
-                [self loadAdrressOnMap:object[@"address"]];
-            }
-        } else {
-            
-        }
-    }];
-     */
     NSArray *addrArray = [eventsQuery findObjects];
     for (PFObject *addr in addrArray) {
         [self loadAdrressOnMap:addr[@"address"]];
@@ -100,6 +100,42 @@
 {
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 200, 200);
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+}
+
+// picker view setup
+// The number of columns of data
+- (int)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+// The number of rows of data
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return _pickerData.count;
+}
+
+// The data to return for the row and component (column) that's being passed in
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return _pickerData[row];
+}
+
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.sortByTextField.text = _pickerData[row];
+    [self.sortByTextField resignFirstResponder];
+    
+    [self performSegueWithIdentifier:@"sortBySegue" sender:nil];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"sortBySegue"])
+    {
+        NSString *sortCriteria = self.sortByTextField.text;
+        
+    }
 }
 
 @end
