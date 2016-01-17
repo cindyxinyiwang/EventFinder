@@ -31,7 +31,6 @@
 - (IBAction)logIn:(id)sender {
     [PFUser logInWithUsernameInBackground:self.usernameText.text password:self.passwordText.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if(user) {
-            NSLog(@"Age of user: %@", [PFUser currentUser][@"age"]);
             [self performSegueWithIdentifier:@"logInSegue" sender:self];
         } else {
             NSLog(@"failed to log in");

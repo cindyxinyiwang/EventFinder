@@ -1,5 +1,5 @@
 //
-//  SecondViewController.h
+//  EventTableViewCell.h
 //  Event-Finder
 //
 //  Created by David Mattia on 1/16/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-
+@interface EventTableViewCell : UITableViewCell
 
 @end
-

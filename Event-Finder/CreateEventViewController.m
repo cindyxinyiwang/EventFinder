@@ -36,6 +36,7 @@
     event[@"endTime"] = self.endTime.date;
     event[@"description"] = self.descriptionText.text;
     event[@"address"] = self.addressText.text;
+    [event setObject:[PFUser currentUser] forKey:@"createdBy"];
     [event saveInBackground];
 }
 

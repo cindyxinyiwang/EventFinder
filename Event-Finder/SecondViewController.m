@@ -7,6 +7,7 @@
 //
 
 #import "SecondViewController.h"
+#import <Parse/Parse.h>
 
 @interface SecondViewController ()
 
@@ -23,5 +24,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 5;
+}
+
 
 @end
