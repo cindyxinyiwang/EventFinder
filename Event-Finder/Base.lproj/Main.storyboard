@@ -61,7 +61,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myEventCell" id="gch-mi-ATO" customClass="EventTableViewCell">
-                                        <rect key="frame" x="0.0" y="92" width="335" height="115"/>
+                                        <rect key="frame" x="0.0" y="28" width="335" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gch-mi-ATO" id="4T8-gg-vmt">
                                             <rect key="frame" x="0.0" y="0.0" width="302" height="114.5"/>
@@ -99,6 +99,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="My Events" id="cQf-RR-wqa">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="Ksi-mI-yOw">
+                            <connections>
+                                <segue destination="8gk-Xm-0PL" kind="show" id="wcE-4X-bh0"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oca-Fz-v6t">
                             <connections>
                                 <segue destination="FRL-VF-i78" kind="show" id="u9C-pc-VkF"/>
@@ -331,13 +336,13 @@
                     <navigationItem key="navigationItem" id="nf6-Ic-xEG">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="GB5-EU-SVD">
                             <connections>
-                                <segue destination="8rJ-Kc-sve" kind="show" id="MJN-YV-MjD"/>
+                                <segue destination="8rJ-Kc-sve" kind="presentation" id="MJN-YV-MjD"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="Uwn-qM-Vse">
                             <connections>
                                 <action selector="doneClicked:" destination="3qu-yI-C5O" id="Z6B-d7-OPj"/>
-                                <segue destination="8rJ-Kc-sve" kind="show" id="hVE-xT-PD6"/>
+                                <segue destination="8rJ-Kc-sve" kind="presentation" id="hVE-xT-PD6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -383,6 +388,25 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bfd-lf-j4E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="811.5" y="1677.5"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="Sen-Og-HSX">
+            <objects>
+                <viewController id="8gk-Xm-0PL" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bfN-ga-MH7"/>
+                        <viewControllerLayoutGuide type="bottom" id="fiI-1G-9Jt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="awt-a0-F2A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jI4-OF-eJW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1561.5" y="855.5"/>
         </scene>
