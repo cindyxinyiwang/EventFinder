@@ -70,13 +70,14 @@
         [eventQuery whereKey:@"createdBy" equalTo:[PFUser currentUser]];
         [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *events, NSError *error) {
             PFObject *event = [events objectAtIndex:indexPath.row];
-            NSLog(@"Viewing event: %@", event[@"title"]);
             destinationViewController.eventTitle = event[@"title"];
             destinationViewController.address = event[@"address"];
             destinationViewController.cost = event[@"cost"];
             destinationViewController.startTime = event[@"endTime"];
             destinationViewController.endTime = event[@"startTime"];
             destinationViewController.desc = event[@"description"];
+            destinationViewController.eventId = event.objectId;
+            NSLog(@"Sending eventId: %@", event.objectId);
             [destinationViewController viewDidLoad];
         }];
     }

@@ -16,5 +16,6 @@
 @property (nonatomic, strong) NSDate *endTime;
 @property (nonatomic, strong) NSString *desc;
 @property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) NSString *eventId;
 
 @end
