@@ -67,13 +67,11 @@
         if(error) {
             NSLog(@"Error: %@", error);
         } else {
-            for(PFObject *goingEvent in goingEvents) {
-                PFObject *event = goingEvent[@"event"];
-                cell.textLabel.text = [NSString stringWithFormat:@"%@ is going to %@", [[goingEvent objectForKey:@"guest"] objectForKey:@"username"], event[@"title"]];
-            }
+            PFObject *goingEvent = [goingEvents objectAtIndex:indexPath.row];
+            PFObject *event = goingEvent[@"event"];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ is going to %@", [[goingEvent objectForKey:@"guest"] objectForKey:@"username"], event[@"title"]];
         }
     }];
-    cell.textLabel.text = @"Text";
     
     return cell;
 }
