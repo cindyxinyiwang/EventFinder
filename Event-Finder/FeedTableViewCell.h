@@ -11,5 +11,7 @@
 @interface FeedTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *feedLabel;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *eventName;
 
 @end

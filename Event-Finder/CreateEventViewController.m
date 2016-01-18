@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 
 @interface CreateEventViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *eventTitle;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionText;
 @property (weak, nonatomic) IBOutlet UITextField *addressText;
@@ -29,7 +30,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)createEvent:(id)sender {
+- (IBAction)doneClicked:(id)sender {
     PFObject *event = [PFObject objectWithClassName:@"Event"];
     event[@"title"] = self.eventTitle.text;
     event[@"public"] = @YES;
@@ -40,6 +41,9 @@
     event[@"cost"] = [NSNumber numberWithFloat:[self.costText.text floatValue]];
     [event setObject:[PFUser currentUser] forKey:@"createdBy"];
     [event saveInBackground];
+    
+    NSLog(@"%@",self.navigationController.viewControllers);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*

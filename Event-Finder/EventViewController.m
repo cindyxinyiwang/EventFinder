@@ -11,7 +11,6 @@
 
 @interface EventViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *costLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
@@ -28,7 +27,7 @@
     [super viewDidLoad];
 
     // Set up the main labels
-    self.titleLabel.text = self.eventTitle;
+    self.navigationItem.title = self.eventTitle;
     self.descriptionLabel.text = self.desc;
     self.costLabel.text = [NSString stringWithFormat:@"Cost: $%@", self.cost];
     self.addressLabel.text = self.address;
@@ -56,12 +55,12 @@
                 if(error) {
                     NSLog(@"Error determining if user is going: %@", error);
                 } else {
-                    if([objects count]) {
+                    if([objects count] > 0) {
                         NSLog(@"User is already going");
-                        [self.goingSwitch setOn:YES animated:YES];
+                        [self.goingSwitch setOn:YES animated:NO];
                     } else {
                         NSLog(@"User is not going");
-                        [self.goingSwitch setOn:NO animated:YES];
+                        [self.goingSwitch setOn:NO animated:NO];
                     }
                 }
             }];

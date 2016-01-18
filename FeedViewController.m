@@ -46,6 +46,8 @@
         cell = [[FeedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    // Set the cells username and eventName properties
     PFQuery *feedQuery = [PFQuery queryWithClassName:@"Going"];
     [feedQuery findObjectsInBackgroundWithBlock:^(NSArray *events, NSError *error) {
         __block NSString *username, *eventTitle;

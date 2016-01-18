@@ -64,6 +64,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"viewEventSegue"]) {
         NSIndexPath *indexPath = [self.MyEventTableView indexPathForSelectedRow];
+        /*
+        UINavigationController *nc = segue.destinationViewController;
+        EventViewController *destinationViewController = (EventViewController *)nc.topViewController;
+         */
+        NSLog(@"Destination: %@", segue.destinationViewController);
         EventViewController *destinationViewController = segue.destinationViewController;
         
         PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
@@ -77,7 +82,6 @@
             destinationViewController.endTime = event[@"startTime"];
             destinationViewController.desc = event[@"description"];
             destinationViewController.eventId = event.objectId;
-            NSLog(@"Sending eventId: %@", event.objectId);
             [destinationViewController viewDidLoad];
         }];
     }
