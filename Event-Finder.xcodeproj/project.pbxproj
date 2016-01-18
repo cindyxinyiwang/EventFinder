@@ -40,6 +40,7 @@
 		F1D07B931C4C6A7A002DFEB1 /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D07B921C4C6A7A002DFEB1 /* EventViewController.m */; };
 		F1D07B951C4C96C8002DFEB1 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D07B941C4C96C8002DFEB1 /* ParseUI.framework */; };
 		F1D07B981C4C9713002DFEB1 /* FeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D07B971C4C9713002DFEB1 /* FeedTableViewController.m */; };
+		F1D07B9B1C4D7B7A002DFEB1 /* createAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D07B9A1C4D7B7A002DFEB1 /* createAccountViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,8 @@
 		F1D07B941C4C96C8002DFEB1 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		F1D07B961C4C9713002DFEB1 /* FeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewController.h; sourceTree = "<group>"; };
 		F1D07B971C4C9713002DFEB1 /* FeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewController.m; sourceTree = "<group>"; };
+		F1D07B991C4D7B7A002DFEB1 /* createAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = createAccountViewController.h; sourceTree = "<group>"; };
+		F1D07B9A1C4D7B7A002DFEB1 /* createAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = createAccountViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +203,8 @@
 				F109EE531C4ADEFD00B096D2 /* SecondViewController.h */,
 				F109EE541C4ADEFD00B096D2 /* SecondViewController.m */,
 				F109EE561C4ADEFD00B096D2 /* Main.storyboard */,
+				F1D07B991C4D7B7A002DFEB1 /* createAccountViewController.h */,
+				F1D07B9A1C4D7B7A002DFEB1 /* createAccountViewController.m */,
 				F1D07B961C4C9713002DFEB1 /* FeedTableViewController.h */,
 				F1D07B971C4C9713002DFEB1 /* FeedTableViewController.m */,
 				F1D07B911C4C6A7A002DFEB1 /* EventViewController.h */,
@@ -391,6 +396,7 @@
 				75D600E61C4B141800637BBA /* SPAnnotation.m in Sources */,
 				F109EE4F1C4ADEFD00B096D2 /* AppDelegate.m in Sources */,
 				F109EE521C4ADEFD00B096D2 /* FirstViewController.m in Sources */,
+				F1D07B9B1C4D7B7A002DFEB1 /* createAccountViewController.m in Sources */,
 				F109EE4C1C4ADEFD00B096D2 /* main.m in Sources */,
 				F1D07B931C4C6A7A002DFEB1 /* EventViewController.m in Sources */,
 				F1D07B981C4C9713002DFEB1 /* FeedTableViewController.m in Sources */,
