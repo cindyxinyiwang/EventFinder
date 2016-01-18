@@ -7,6 +7,8 @@
 //
 
 #import "FeedViewController.h"
+#import <Parse/Parse.h>
+#import "FeedTableViewCell.h"
 
 @interface FeedViewController ()
 
@@ -17,6 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.feedTableView.delegate = self;
+    self.feedTableView.dataSource = self;
+    [self.feedTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +29,42 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
-*/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    PFQuery *feedQuery = [PFQuery queryWithClassName:@"Going"];
+    NSLog(@"Feed table count: %ld", (long)[feedQuery countObjects]);
+    return [feedQuery countObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellid = @"feedCell";
+    FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellid];
+    if(cell==nil) {
+        cell = [[FeedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    PFQuery *feedQuery = [PFQuery queryWithClassName:@"Going"];
+    [feedQuery findObjectsInBackgroundWithBlock:^(NSArray *events, NSError *error) {
+        __block NSString *username, *eventTitle;
+        PFObject *event = [events objectAtIndex:indexPath.row];
+        PFObject *user = event[@"guest"];
+        [user fetchIfNeededInBackgroundWithBlock:^(PFObject *userObject, NSError *error) {
+            if(error) {
+                NSLog(@"Could not find user for event");
+            } else {
+                username = userObject[@"username"];
+                NSLog(@"Username: %@", username);
+            }
+        }];
+        eventTitle = @"event";
+        cell.feedLabel.text = [NSString stringWithFormat:@"%@ is going to %@", username, eventTitle];
+    }];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+}
 
 @end

@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *eventTitle;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionText;
 @property (weak, nonatomic) IBOutlet UITextField *addressText;
+@property (weak, nonatomic) IBOutlet UITextField *costText;
 
 @end
 
@@ -36,6 +37,7 @@
     event[@"endTime"] = self.endTime.date;
     event[@"description"] = self.descriptionText.text;
     event[@"address"] = self.addressText.text;
+    event[@"cost"] = [NSNumber numberWithFloat:[self.costText.text floatValue]];
     [event setObject:[PFUser currentUser] forKey:@"createdBy"];
     [event saveInBackground];
 }

@@ -21,6 +21,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.MyEventTableView.dataSource = self;
     self.MyEventTableView.delegate = self;
+    [self.MyEventTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +41,6 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Creating cell number: %ld", (long)indexPath.row);
     static NSString *cellid = @"myEventCell";
     EventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellid];
     if(cell==nil) {
@@ -53,7 +53,7 @@
         PFObject *event = [events objectAtIndex:indexPath.row];
         cell.titleLabel.text = event[@"title"];
         cell.addressLabel.text = event[@"address"];
-        //cell.costLabel.text = event[@"Cost"];
+        cell.costLabel.text = [NSString stringWithFormat:@"Cost: $%@", event[@"cost"]];
     }];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     

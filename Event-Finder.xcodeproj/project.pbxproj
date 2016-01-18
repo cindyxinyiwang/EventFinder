@@ -37,6 +37,7 @@
 		F109EEA21C4AF0C800B096D2 /* CreateEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EEA11C4AF0C800B096D2 /* CreateEventViewController.m */; };
 		F109EEA51C4B017B00B096D2 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EEA41C4B017B00B096D2 /* LogInViewController.m */; };
 		F109EEA81C4B0CEB00B096D2 /* EventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EEA71C4B0CEB00B096D2 /* EventTableViewCell.m */; };
+		F1D07B901C4C399C002DFEB1 /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D07B8F1C4C399C002DFEB1 /* FeedTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,8 @@
 		F109EEA41C4B017B00B096D2 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		F109EEA61C4B0CEB00B096D2 /* EventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTableViewCell.h; sourceTree = "<group>"; };
 		F109EEA71C4B0CEB00B096D2 /* EventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewCell.m; sourceTree = "<group>"; };
+		F1D07B8E1C4C399C002DFEB1 /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
+		F1D07B8F1C4C399C002DFEB1 /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +195,8 @@
 				F109EE531C4ADEFD00B096D2 /* SecondViewController.h */,
 				F109EE541C4ADEFD00B096D2 /* SecondViewController.m */,
 				F109EE561C4ADEFD00B096D2 /* Main.storyboard */,
+				F1D07B8E1C4C399C002DFEB1 /* FeedTableViewCell.h */,
+				F1D07B8F1C4C399C002DFEB1 /* FeedTableViewCell.m */,
 				F109EEA61C4B0CEB00B096D2 /* EventTableViewCell.h */,
 				F109EEA71C4B0CEB00B096D2 /* EventTableViewCell.m */,
 				F109EEA31C4B017B00B096D2 /* LogInViewController.h */,
@@ -374,6 +379,7 @@
 				F109EEA21C4AF0C800B096D2 /* CreateEventViewController.m in Sources */,
 				F109EE831C4AE06B00B096D2 /* FeedViewController.m in Sources */,
 				F109EEA81C4B0CEB00B096D2 /* EventTableViewCell.m in Sources */,
+				F1D07B901C4C399C002DFEB1 /* FeedTableViewCell.m in Sources */,
 				75D600E61C4B141800637BBA /* SPAnnotation.m in Sources */,
 				F109EE4F1C4ADEFD00B096D2 /* AppDelegate.m in Sources */,
 				F109EE521C4ADEFD00B096D2 /* FirstViewController.m in Sources */,
@@ -521,6 +527,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Event-Finder/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.David-mattia.Event-Finder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -536,6 +543,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Event-Finder/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.David-mattia.Event-Finder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
