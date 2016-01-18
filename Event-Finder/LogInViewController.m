@@ -34,6 +34,12 @@
             [self performSegueWithIdentifier:@"logInSegue" sender:self];
         } else {
             NSLog(@"failed to log in");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log in Error"
+                                                            message:@"Invalid username or password"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles: nil];
+            [alert show];
         }
     }];
 }

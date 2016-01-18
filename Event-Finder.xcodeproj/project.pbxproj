@@ -38,6 +38,7 @@
 		F109EEA51C4B017B00B096D2 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EEA41C4B017B00B096D2 /* LogInViewController.m */; };
 		F109EEA81C4B0CEB00B096D2 /* EventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EEA71C4B0CEB00B096D2 /* EventTableViewCell.m */; };
 		F1D07B901C4C399C002DFEB1 /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D07B8F1C4C399C002DFEB1 /* FeedTableViewCell.m */; };
+		F1D07B931C4C6A7A002DFEB1 /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D07B921C4C6A7A002DFEB1 /* EventViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,8 @@
 		F109EEA71C4B0CEB00B096D2 /* EventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewCell.m; sourceTree = "<group>"; };
 		F1D07B8E1C4C399C002DFEB1 /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
 		F1D07B8F1C4C399C002DFEB1 /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
+		F1D07B911C4C6A7A002DFEB1 /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventViewController.h; sourceTree = "<group>"; };
+		F1D07B921C4C6A7A002DFEB1 /* EventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +198,8 @@
 				F109EE531C4ADEFD00B096D2 /* SecondViewController.h */,
 				F109EE541C4ADEFD00B096D2 /* SecondViewController.m */,
 				F109EE561C4ADEFD00B096D2 /* Main.storyboard */,
+				F1D07B911C4C6A7A002DFEB1 /* EventViewController.h */,
+				F1D07B921C4C6A7A002DFEB1 /* EventViewController.m */,
 				F1D07B8E1C4C399C002DFEB1 /* FeedTableViewCell.h */,
 				F1D07B8F1C4C399C002DFEB1 /* FeedTableViewCell.m */,
 				F109EEA61C4B0CEB00B096D2 /* EventTableViewCell.h */,
@@ -384,6 +389,7 @@
 				F109EE4F1C4ADEFD00B096D2 /* AppDelegate.m in Sources */,
 				F109EE521C4ADEFD00B096D2 /* FirstViewController.m in Sources */,
 				F109EE4C1C4ADEFD00B096D2 /* main.m in Sources */,
+				F1D07B931C4C6A7A002DFEB1 /* EventViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

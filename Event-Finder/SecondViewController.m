@@ -9,6 +9,7 @@
 #import "SecondViewController.h"
 #import <Parse/Parse.h>
 #import "EventTableViewCell.h"
+#import "EventViewController.h"
 
 @interface SecondViewController ()
 
@@ -58,6 +59,27 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"viewEventSegue"]) {
+        NSIndexPath *indexPath = [self.MyEventTableView indexPathForSelectedRow];
+        EventViewController *destinationViewController = segue.destinationViewController;
+        
+        PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
+        [eventQuery whereKey:@"createdBy" equalTo:[PFUser currentUser]];
+        [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *events, NSError *error) {
+            PFObject *event = [events objectAtIndex:indexPath.row];
+            NSLog(@"Viewing event: %@", event[@"title"]);
+            destinationViewController.eventTitle = event[@"title"];
+            destinationViewController.address = event[@"address"];
+            destinationViewController.cost = event[@"cost"];
+            destinationViewController.startTime = event[@"endTime"];
+            destinationViewController.endTime = event[@"startTime"];
+            destinationViewController.desc = event[@"description"];
+            [destinationViewController viewDidLoad];
+        }];
+    }
 }
 
 @end
