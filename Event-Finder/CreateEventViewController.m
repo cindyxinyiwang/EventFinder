@@ -30,7 +30,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)doneClicked:(id)sender {
+- (IBAction)cancelButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)saveButtonClicked:(id)sender {
+    NSLog(@"Creating event %@", self.eventTitle.text);
     PFObject *event = [PFObject objectWithClassName:@"Event"];
     event[@"title"] = self.eventTitle.text;
     event[@"public"] = @YES;
@@ -40,20 +45,15 @@
     event[@"address"] = self.addressText.text;
     event[@"cost"] = [NSNumber numberWithFloat:[self.costText.text floatValue]];
     [event setObject:[PFUser currentUser] forKey:@"createdBy"];
-    [event saveInBackground];
-    
-    NSLog(@"%@",self.navigationController.viewControllers);
+    [event saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(!succeeded) {
+            NSLog(@"Could not save event. error: %@", error);
+        } else {
+            NSLog(@"Finished saving object");
+        }
+    }];
+    //NSLog(@"%@",self.navigationController.viewControllers);
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

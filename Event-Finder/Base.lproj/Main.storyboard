@@ -61,7 +61,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myEventCell" id="gch-mi-ATO" customClass="EventTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="335" height="115"/>
+                                        <rect key="frame" x="0.0" y="92" width="335" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gch-mi-ATO" id="4T8-gg-vmt">
                                             <rect key="frame" x="0.0" y="0.0" width="302" height="114.5"/>
@@ -106,7 +106,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oca-Fz-v6t">
                             <connections>
-                                <segue destination="FRL-VF-i78" kind="show" id="u9C-pc-VkF"/>
+                                <segue destination="3qu-yI-C5O" kind="show" id="7SJ-Os-NTJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -248,7 +248,7 @@
             </objects>
             <point key="canvasLocation" x="2130.5" y="855.5"/>
         </scene>
-        <!--Create Event View Controller-->
+        <!--Create Event-->
         <scene sceneID="Cx6-sD-Sf1">
             <objects>
                 <viewController id="3qu-yI-C5O" customClass="CreateEventViewController" sceneMemberID="viewController">
@@ -289,12 +289,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="iVR-J9-BYo">
-                                <rect key="frame" x="20" y="363" width="335" height="86"/>
-                                <date key="date" timeIntervalSinceReferenceDate="474674568.22564101">
-                                    <!--2016-01-16 22:02:48 +0000-->
-                                </date>
-                            </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1T-Tl-AQE">
                                 <rect key="frame" x="20" y="87" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -329,20 +323,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="iVR-J9-BYo">
+                                <rect key="frame" x="20" y="363" width="335" height="86"/>
+                                <date key="date" timeIntervalSinceReferenceDate="474674568.22564101">
+                                    <!--2016-01-16 22:02:48 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="nf6-Ic-xEG">
+                    <navigationItem key="navigationItem" title="Create Event" id="nf6-Ic-xEG">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="GB5-EU-SVD">
                             <connections>
-                                <segue destination="8rJ-Kc-sve" kind="presentation" id="MJN-YV-MjD"/>
+                                <action selector="cancelButtonClicked:" destination="3qu-yI-C5O" id="G9K-s3-P1i"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Uwn-qM-Vse">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="nTa-Rb-8Wu">
                             <connections>
-                                <action selector="doneClicked:" destination="3qu-yI-C5O" id="Z6B-d7-OPj"/>
-                                <segue destination="8rJ-Kc-sve" kind="presentation" id="hVE-xT-PD6"/>
+                                <action selector="saveButtonClicked:" destination="3qu-yI-C5O" id="x7X-3z-0wv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -359,7 +358,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dqO-wU-mxN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3251.5" y="-0.5"/>
+            <point key="canvasLocation" x="2691.5" y="-0.5"/>
         </scene>
         <!--My Feed-->
         <scene sceneID="n5v-zF-Moi">
@@ -511,24 +510,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NAn-PS-wZb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1561.5" y="-0.5"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="VYi-kc-hwO">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FRL-VF-i78" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z5I-bz-I6M">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="3qu-yI-C5O" kind="relationship" relationship="rootViewController" id="MsV-Tm-fBC"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7xO-ri-gb1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2664.5" y="-0.5"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="YMW-JY-C3K">
@@ -744,7 +725,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hVE-xT-PD6"/>
-        <segue reference="gdk-H0-MdY"/>
+        <segue reference="hI7-qX-4Ri"/>
     </inferredMetricsTieBreakers>
 </document>

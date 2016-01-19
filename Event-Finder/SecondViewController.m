@@ -22,6 +22,18 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.MyEventTableView.dataSource = self;
     self.MyEventTableView.delegate = self;
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self.MyEventTableView addSubview:refreshControl];
+}
+
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    [self.MyEventTableView reloadData];
+    [refreshControl endRefreshing];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
     [self.MyEventTableView reloadData];
 }
 
