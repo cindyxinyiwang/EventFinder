@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75250CD21C4E9BD600B280F7 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75250CD11C4E9BD600B280F7 /* CoreLocationController.m */; };
 		75D600DF1C4AEC7700637BBA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D600DE1C4AEC7700637BBA /* CoreLocation.framework */; };
 		75D600E31C4B0D5000637BBA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D600E21C4B0D5000637BBA /* MapKit.framework */; };
 		75D600E61C4B141800637BBA /* SPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D600E51C4B141800637BBA /* SPAnnotation.m */; };
+		75D600F11C4D70BB00637BBA /* SortEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D600F01C4D70BB00637BBA /* SortEventViewController.m */; };
+		75D600FB1C4DC74B00637BBA /* SortEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D600FA1C4DC74B00637BBA /* SortEventTableViewCell.m */; };
 		F109EE4C1C4ADEFD00B096D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EE4B1C4ADEFD00B096D2 /* main.m */; };
 		F109EE4F1C4ADEFD00B096D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EE4E1C4ADEFD00B096D2 /* AppDelegate.m */; };
 		F109EE521C4ADEFD00B096D2 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EE511C4ADEFD00B096D2 /* FirstViewController.m */; };
@@ -60,10 +63,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		75250CD11C4E9BD600B280F7 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
+		75250CD31C4E9C0700B280F7 /* CoreLocationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
 		75D600DE1C4AEC7700637BBA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		75D600E21C4B0D5000637BBA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		75D600E41C4B141800637BBA /* SPAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAnnotation.h; sourceTree = "<group>"; };
 		75D600E51C4B141800637BBA /* SPAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAnnotation.m; sourceTree = "<group>"; };
+		75D600F01C4D70BB00637BBA /* SortEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortEventViewController.m; sourceTree = "<group>"; };
+		75D600F21C4D70D000637BBA /* SortEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SortEventViewController.h; path = ../SortEventViewController.h; sourceTree = "<group>"; };
+		75D600F91C4DC74B00637BBA /* SortEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortEventTableViewCell.h; sourceTree = "<group>"; };
+		75D600FA1C4DC74B00637BBA /* SortEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortEventTableViewCell.m; sourceTree = "<group>"; };
 		F109EE471C4ADEFD00B096D2 /* Event-Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Event-Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F109EE4B1C4ADEFD00B096D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F109EE4D1C4ADEFD00B096D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -193,10 +202,14 @@
 		F109EE491C4ADEFD00B096D2 /* Event-Finder */ = {
 			isa = PBXGroup;
 			children = (
+				75D600F21C4D70D000637BBA /* SortEventViewController.h */,
+				75D600F01C4D70BB00637BBA /* SortEventViewController.m */,
 				F109EE4D1C4ADEFD00B096D2 /* AppDelegate.h */,
 				F109EE4E1C4ADEFD00B096D2 /* AppDelegate.m */,
 				F109EE501C4ADEFD00B096D2 /* FirstViewController.h */,
 				F109EE511C4ADEFD00B096D2 /* FirstViewController.m */,
+				75250CD11C4E9BD600B280F7 /* CoreLocationController.m */,
+				75250CD31C4E9C0700B280F7 /* CoreLocationController.h */,
 				F109EE531C4ADEFD00B096D2 /* SecondViewController.h */,
 				F109EE541C4ADEFD00B096D2 /* SecondViewController.m */,
 				F109EE561C4ADEFD00B096D2 /* Main.storyboard */,
@@ -206,6 +219,8 @@
 				F1D07B921C4C6A7A002DFEB1 /* EventViewController.m */,
 				F1D07B8E1C4C399C002DFEB1 /* FeedTableViewCell.h */,
 				F1D07B8F1C4C399C002DFEB1 /* FeedTableViewCell.m */,
+				75D600F91C4DC74B00637BBA /* SortEventTableViewCell.h */,
+				75D600FA1C4DC74B00637BBA /* SortEventTableViewCell.m */,
 				F109EEA61C4B0CEB00B096D2 /* EventTableViewCell.h */,
 				F109EEA71C4B0CEB00B096D2 /* EventTableViewCell.m */,
 				F109EEA31C4B017B00B096D2 /* LogInViewController.h */,
@@ -388,12 +403,15 @@
 				F109EEA21C4AF0C800B096D2 /* CreateEventViewController.m in Sources */,
 				F109EEA81C4B0CEB00B096D2 /* EventTableViewCell.m in Sources */,
 				F1D07B901C4C399C002DFEB1 /* FeedTableViewCell.m in Sources */,
+				75D600F11C4D70BB00637BBA /* SortEventViewController.m in Sources */,
 				75D600E61C4B141800637BBA /* SPAnnotation.m in Sources */,
 				F109EE4F1C4ADEFD00B096D2 /* AppDelegate.m in Sources */,
+				75D600FB1C4DC74B00637BBA /* SortEventTableViewCell.m in Sources */,
 				F109EE521C4ADEFD00B096D2 /* FirstViewController.m in Sources */,
 				F109EE4C1C4ADEFD00B096D2 /* main.m in Sources */,
 				F1D07B931C4C6A7A002DFEB1 /* EventViewController.m in Sources */,
 				F1D07B981C4C9713002DFEB1 /* FeedTableViewController.m in Sources */,
+				75250CD21C4E9BD600B280F7 /* CoreLocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

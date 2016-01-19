@@ -7,6 +7,8 @@
 //
 
 #import "FirstViewController.h"
+#import "SortEventViewController.h"
+
 #import <Parse/Parse.h>
 
 
@@ -16,22 +18,38 @@
 }
 @property (weak, nonatomic) IBOutlet UILabel *Title;
 @property (weak, nonatomic) IBOutlet UITextField *sortByTextField;
+/*
+@property (nonatomic) float cur_latitude;
+@property (nonatomic) float cur_longitude;
+ */
+@property (weak, nonatomic) CLLocation *curLocation;
+
+
 @end
 
 @implementation FirstViewController
 
 @synthesize mapView;
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.locationManger = [[CLLocationManager alloc] init];
+    
+    /*
+    self.locationManager = [[CLLocationManager alloc] init];
     #ifdef __IPHONE_8_0
     if(IS_OS_8_OR_LATER) {
-        [self.locationManger requestWhenInUseAuthorization];
+        [self.locationManager requestWhenInUseAuthorization];
     }
     #endif
-    [self.locationManger startUpdatingLocation];
+    [self.locationManager startUpdatingLocation];
+    */
+    
+    
+    self.locationManager = [[CoreLocationController alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager.locationManager startUpdatingLocation];
     
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
@@ -51,6 +69,21 @@
 
 }
 
+// location controller delegate methods
+- (void)update:(CLLocation *)location {
+    //self.lblLatitude.text= [NSString stringWithFormat:@"Latitude: %f", [location coordinate].latitude];
+    //self.lblLongitude.text = [NSString stringWithFormat:@"Longitude: %f", [location coordinate].longitude];
+    //self.cur_latitude = [location coordinate].latitude;
+    //self.cur_longitude = [location coordinate].longitude;
+    self.curLocation = location;
+}
+
+- (void)locationError:(NSError *)error {
+    //self.lblLatitude.text = [error description];
+    //self.lblLongitude.text = nil;
+    NSLog(@"Location Error: %@", [error description]);
+}
+
 - (void)loadEventsOnMap {
     //NSString *location = @"450 Serra Mall, Stanford, CA 94305";
     PFQuery *eventsQuery = [PFQuery queryWithClassName:@"Event"];
@@ -62,7 +95,7 @@
 
 - (void) loadAdrressOnMap: (NSString *) addr
 {
-    NSLog(@"decoding %@", addr);
+    //NSLog(@"decoding %@", addr);
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:addr
                  completionHandler:^(NSArray* placemarks, NSError* error){
@@ -77,7 +110,6 @@
                          
                          [self.mapView setRegion:region animated:YES];
                          [self.mapView addAnnotation:placemark];
-                         NSLog(@"Added location.");
                      }
                  }
      ];
@@ -90,7 +122,6 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-     NSLog(@"inside didUpdateLocation");
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
     NSLog(@"inside didUpdateLocation");
@@ -127,6 +158,7 @@
     [self.sortByTextField resignFirstResponder];
     
     [self performSegueWithIdentifier:@"sortBySegue" sender:nil];
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -135,7 +167,50 @@
     {
         NSString *sortCriteria = self.sortByTextField.text;
         
+        SortEventViewController *sortEventController = segue.destinationViewController;
+        PFQuery *query = [PFQuery queryWithClassName:@"Event"];
+        [query orderByAscending:@"cost"];
+        sortEventController.events = [query findObjects];
+        
+        // get distance
+        NSMutableArray *dist = [[NSMutableArray alloc] init];
+        for (PFObject *obj in sortEventController.events) {
+            NSString *addr = obj[@"address"];
+            CLLocationCoordinate2D addrLoc = [self getLocationFromAddressString:addr];
+            CLLocation *addrCLLoc = [[CLLocation alloc] initWithLatitude:addrLoc.latitude longitude:addrLoc.longitude];
+            // !!might curLocation not set
+            CLLocationDistance meters = [addrCLLoc distanceFromLocation:self.curLocation];
+            [dist addObject:[NSString stringWithFormat:@"%1f", meters]];
+        }
+        
+        sortEventController.distance = dist;
+        sortEventController.SearchCriteria = sortCriteria;
     }
 }
+
+-(CLLocationCoordinate2D) getLocationFromAddressString: (NSString*) addressStr {
+    double latitude = 0, longitude = 0;
+    NSString *esc_addr =  [addressStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *req = [NSString stringWithFormat:@"http://maps.google.com/maps/api/geocode/json?sensor=false&address=%@", esc_addr];
+    NSString *result = [NSString stringWithContentsOfURL:[NSURL URLWithString:req] encoding:NSUTF8StringEncoding error:NULL];
+    if (result) {
+        NSScanner *scanner = [NSScanner scannerWithString:result];
+        if ([scanner scanUpToString:@"\"lat\" :" intoString:nil] && [scanner scanString:@"\"lat\" :" intoString:nil]) {
+            [scanner scanDouble:&latitude];
+            if ([scanner scanUpToString:@"\"lng\" :" intoString:nil] && [scanner scanString:@"\"lng\" :" intoString:nil]) {
+                [scanner scanDouble:&longitude];
+            }
+        }
+    }
+    CLLocationCoordinate2D center;
+    center.latitude=latitude;
+    center.longitude = longitude;
+    NSLog(@"View Controller get Location Logitute : %f",center.latitude);
+    NSLog(@"View Controller get Location Latitute : %f",center.longitude);
+    return center;
+    
+}
+
+
 
 @end
