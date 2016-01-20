@@ -83,7 +83,7 @@
     cell.titleLabel.text = event[@"title"];
     cell.costLabel.text = [NSString stringWithFormat:@"Cost: %@", event[@"cost"]];
     
-    cell.distanceLabel.text = [self.distance objectAtIndex:indexPath.row];
+    cell.distanceLabel.text = [NSString stringWithFormat:@"Distance: %@",[self.distance objectAtIndex:indexPath.row]];
     return cell;
 }
 

@@ -22,7 +22,7 @@
 @property (nonatomic) float cur_latitude;
 @property (nonatomic) float cur_longitude;
  */
-@property (weak, nonatomic) CLLocation *curLocation;
+@property (strong, nonatomic) CLLocation *curLocation;
 
 
 @end
@@ -76,6 +76,7 @@
     //self.cur_latitude = [location coordinate].latitude;
     //self.cur_longitude = [location coordinate].longitude;
     self.curLocation = location;
+    NSLog(@"Start updating location: %1f", [self.curLocation coordinate].latitude);
 }
 
 - (void)locationError:(NSError *)error {
@@ -174,13 +175,16 @@
         
         // get distance
         NSMutableArray *dist = [[NSMutableArray alloc] init];
+        NSLog(@"Current Loc: %1f", self.curLocation.altitude);
         for (PFObject *obj in sortEventController.events) {
             NSString *addr = obj[@"address"];
             CLLocationCoordinate2D addrLoc = [self getLocationFromAddressString:addr];
             CLLocation *addrCLLoc = [[CLLocation alloc] initWithLatitude:addrLoc.latitude longitude:addrLoc.longitude];
+            NSLog(@"Current location %f", [self.curLocation coordinate].latitude);
+            NSLog(@"Dest location %f", addrLoc.latitude);
             // !!might curLocation not set
             CLLocationDistance meters = [addrCLLoc distanceFromLocation:self.curLocation];
-            [dist addObject:[NSString stringWithFormat:@"%1f", meters]];
+            [dist addObject:[NSString stringWithFormat:@"%.1f Miles", meters/1609.344]];
         }
         
         sortEventController.distance = dist;
@@ -190,10 +194,12 @@
 
 -(CLLocationCoordinate2D) getLocationFromAddressString: (NSString*) addressStr {
     double latitude = 0, longitude = 0;
+    
     NSString *esc_addr =  [addressStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *req = [NSString stringWithFormat:@"http://maps.google.com/maps/api/geocode/json?sensor=false&address=%@", esc_addr];
     NSString *result = [NSString stringWithContentsOfURL:[NSURL URLWithString:req] encoding:NSUTF8StringEncoding error:NULL];
     if (result) {
+        //NSLog(@"Geting LL %@", addressStr);
         NSScanner *scanner = [NSScanner scannerWithString:result];
         if ([scanner scanUpToString:@"\"lat\" :" intoString:nil] && [scanner scanString:@"\"lat\" :" intoString:nil]) {
             [scanner scanDouble:&latitude];
@@ -205,8 +211,8 @@
     CLLocationCoordinate2D center;
     center.latitude=latitude;
     center.longitude = longitude;
-    NSLog(@"View Controller get Location Logitute : %f",center.latitude);
-    NSLog(@"View Controller get Location Latitute : %f",center.longitude);
+    //NSLog(@"View Controller get Location Logitute : %f",center.latitude);
+    //NSLog(@"View Controller get Location Latitute : %f",center.longitude);
     return center;
     
 }
