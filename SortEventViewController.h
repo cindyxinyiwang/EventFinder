@@ -12,8 +12,7 @@
 @interface SortEventViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSString *SearchCriteria;
-@property (nonatomic, strong) NSArray *events;
-@property (nonatomic, strong) NSArray *distance;
+@property (nonatomic, strong) NSArray *eventObjects;
 @property (weak, nonatomic) IBOutlet UITableView *SortEventTableView;
 
 @end

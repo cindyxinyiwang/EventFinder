@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "SortEventViewController.h"
+#include "EventObject.h"
 
 #import <Parse/Parse.h>
 
@@ -170,26 +171,33 @@
         
         SortEventViewController *sortEventController = segue.destinationViewController;
         PFQuery *query = [PFQuery queryWithClassName:@"Event"];
-        [query orderByAscending:@"cost"];
-        sortEventController.events = [query findObjects];
         
-        // get distance
-        NSMutableArray *dist = [[NSMutableArray alloc] init];
-        NSLog(@"Current Loc: %1f", self.curLocation.altitude);
-        for (PFObject *obj in sortEventController.events) {
-            NSString *addr = obj[@"address"];
-            CLLocationCoordinate2D addrLoc = [self getLocationFromAddressString:addr];
-            CLLocation *addrCLLoc = [[CLLocation alloc] initWithLatitude:addrLoc.latitude longitude:addrLoc.longitude];
-            NSLog(@"Current location %f", [self.curLocation coordinate].latitude);
-            NSLog(@"Dest location %f", addrLoc.latitude);
-            // !!might curLocation not set
-            CLLocationDistance meters = [addrCLLoc distanceFromLocation:self.curLocation];
-            [dist addObject:[NSString stringWithFormat:@"%.1f Miles", meters/1609.344]];
+        //[query orderByAscending:@"cost"];
+        NSArray *objects = [query findObjects];
+        NSMutableArray *eventsArray = [[NSMutableArray alloc] init];
+        for (PFObject *obj in objects) {
+            EventObject *event = [[EventObject alloc] init];
+            event.title = obj[@"title"];
+            event.address = obj[@"address"];
+            event.cost = obj[@"cost"];
+            event.distance = [self getOneDistance:event.address];
+            [eventsArray addObject:event];
         }
         
-        sortEventController.distance = dist;
+        sortEventController.eventObjects = eventsArray;
+
         sortEventController.SearchCriteria = sortCriteria;
     }
+}
+
+-(NSString*) getOneDistance: (NSString*) addr {
+    CLLocationCoordinate2D addrLoc = [self getLocationFromAddressString:addr];
+    CLLocation *addrCLLoc = [[CLLocation alloc] initWithLatitude:addrLoc.latitude longitude:addrLoc.longitude];
+    NSLog(@"Current location %f", [self.curLocation coordinate].latitude);
+    NSLog(@"Dest location %f", addrLoc.latitude);
+    // !!might curLocation not set
+    CLLocationDistance meters = [addrCLLoc distanceFromLocation:self.curLocation];
+    return [NSString stringWithFormat:@"%.1f Miles", meters/1609.344];
 }
 
 -(CLLocationCoordinate2D) getLocationFromAddressString: (NSString*) addressStr {

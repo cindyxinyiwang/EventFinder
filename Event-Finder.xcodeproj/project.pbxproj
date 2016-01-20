@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		75250CD21C4E9BD600B280F7 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75250CD11C4E9BD600B280F7 /* CoreLocationController.m */; };
+		75250CD51C4F1F1800B280F7 /* EventObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 75250CD41C4F1F1800B280F7 /* EventObject.m */; };
 		75D600DF1C4AEC7700637BBA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D600DE1C4AEC7700637BBA /* CoreLocation.framework */; };
 		75D600E31C4B0D5000637BBA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D600E21C4B0D5000637BBA /* MapKit.framework */; };
 		75D600E61C4B141800637BBA /* SPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D600E51C4B141800637BBA /* SPAnnotation.m */; };
@@ -67,6 +68,8 @@
 /* Begin PBXFileReference section */
 		75250CD11C4E9BD600B280F7 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
 		75250CD31C4E9C0700B280F7 /* CoreLocationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
+		75250CD41C4F1F1800B280F7 /* EventObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventObject.m; sourceTree = "<group>"; };
+		75250CD61C4F21F100B280F7 /* EventObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventObject.h; sourceTree = "<group>"; };
 		75D600DE1C4AEC7700637BBA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		75D600E21C4B0D5000637BBA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		75D600E41C4B141800637BBA /* SPAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAnnotation.h; sourceTree = "<group>"; };
@@ -214,6 +217,8 @@
 				F109EE4E1C4ADEFD00B096D2 /* AppDelegate.m */,
 				F109EE501C4ADEFD00B096D2 /* FirstViewController.h */,
 				F109EE511C4ADEFD00B096D2 /* FirstViewController.m */,
+				75250CD41C4F1F1800B280F7 /* EventObject.m */,
+				75250CD61C4F21F100B280F7 /* EventObject.h */,
 				75250CD11C4E9BD600B280F7 /* CoreLocationController.m */,
 				75250CD31C4E9C0700B280F7 /* CoreLocationController.h */,
 				F109EE531C4ADEFD00B096D2 /* SecondViewController.h */,
@@ -411,6 +416,7 @@
 				F109EEA51C4B017B00B096D2 /* LogInViewController.m in Sources */,
 				F109EE551C4ADEFD00B096D2 /* SecondViewController.m in Sources */,
 				F109EEA21C4AF0C800B096D2 /* CreateEventViewController.m in Sources */,
+				75250CD51C4F1F1800B280F7 /* EventObject.m in Sources */,
 				F109EEA81C4B0CEB00B096D2 /* EventTableViewCell.m in Sources */,
 				F1D07B901C4C399C002DFEB1 /* FeedTableViewCell.m in Sources */,
 				75D600F11C4D70BB00637BBA /* SortEventViewController.m in Sources */,
