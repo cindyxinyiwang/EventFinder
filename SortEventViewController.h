@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <ParseUI/ParseUI.h>
 
-@interface SortEventViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SortEventViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, strong) NSString *SearchCriteria;
 @property (nonatomic, strong) NSArray *eventObjects;
