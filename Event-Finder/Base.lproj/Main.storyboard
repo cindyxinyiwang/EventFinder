@@ -5,6 +5,31 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
+        <!--Add Friends-->
+        <scene sceneID="QDm-GP-J8Z">
+            <objects>
+                <viewController id="HPf-8k-2Jb" userLabel="Add Friends" customClass="AddFriendsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JoZ-Uc-moc"/>
+                        <viewControllerLayoutGuide type="bottom" id="DiO-Bl-a0t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fvK-hQ-Hwh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DfI-JT-ek1">
+                                <rect key="frame" x="67.5" y="270" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KJZ-6n-vxL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1883.5" y="-1923.5"/>
+        </scene>
         <!--First View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
@@ -20,8 +45,15 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KwK-1C-p1R">
                                 <rect key="frame" x="0.0" y="109" width="375" height="457"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25R-wG-nOO">
+                                <rect key="frame" x="20" y="71" width="110" height="30"/>
+                                <state key="normal" title="Add Friends"/>
+                                <connections>
+                                    <segue destination="HPf-8k-2Jb" kind="show" id="I9v-WG-PDb"/>
+                                </connections>
+                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sort By...." borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pIk-lK-HPZ">
-                                <rect key="frame" x="258" y="67" width="97" height="30"/>
+                                <rect key="frame" x="258" y="71" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -34,11 +66,12 @@
                         <outlet property="mapView" destination="KwK-1C-p1R" id="1Z5-px-75u"/>
                         <outlet property="sortByTextField" destination="pIk-lK-HPZ" id="YD0-iB-qqZ"/>
                         <segue destination="WT3-L6-34d" kind="show" identifier="sortBySegue" id="fKu-PG-aEM"/>
+                        <segue destination="prn-H3-Eno" kind="show" identifier="MapToEvent" id="oOo-4b-G1v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1408.5" y="-1080.5"/>
+            <point key="canvasLocation" x="1504.5" y="-1056.5"/>
         </scene>
         <!--My Events-->
         <scene sceneID="wg7-f3-ORb">
@@ -708,7 +741,7 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpv-uo-FGI" userLabel="Name">
                                             <rect key="frame" x="47" y="8" width="205" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -793,7 +826,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hhk-j8-61f"/>
         <segue reference="hI7-qX-4Ri"/>
+        <segue reference="oOo-4b-G1v"/>
     </inferredMetricsTieBreakers>
 </document>

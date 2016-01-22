@@ -8,7 +8,9 @@
 
 #import "FirstViewController.h"
 #import "SortEventViewController.h"
+#import "EventViewController.h"
 #include "EventObject.h"
+#import "MapViewAnnotation.h"
 
 #import <Parse/Parse.h>
 
@@ -24,7 +26,9 @@
 @property (nonatomic) float cur_longitude;
  */
 @property (strong, nonatomic) CLLocation *curLocation;
+@property (strong, nonatomic) NSMutableDictionary *annotToEvent;
 
+@property (strong, nonatomic) MKAnnotationView *curAnnotation;
 
 @end
 
@@ -91,13 +95,14 @@
     PFQuery *eventsQuery = [PFQuery queryWithClassName:@"Event"];
     NSArray *addrArray = [eventsQuery findObjects];
     for (PFObject *addr in addrArray) {
-        [self loadAdrressOnMap:addr[@"address"]];
+        [self loadAdrressOnMap:addr];
     }
 }
 
-- (void) loadAdrressOnMap: (NSString *) addr
+- (void) loadAdrressOnMap: (PFObject *) event
 {
     //NSLog(@"decoding %@", addr);
+    NSString* addr = event[@"address"];
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:addr
                  completionHandler:^(NSArray* placemarks, NSError* error){
@@ -111,7 +116,12 @@
                          region.span.latitudeDelta /= 8.0;
                          
                          [self.mapView setRegion:region animated:YES];
-                         [self.mapView addAnnotation:placemark];
+                         
+                         MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithTitle:event[@"title"] AndCoordinate:placemark.location.coordinate];
+                         [self.mapView addAnnotation:annotation];
+                         
+                         // update annotation map
+                         [self.annotToEvent setObject:event forKey:annotation];
                      }
                  }
      ];
@@ -120,6 +130,23 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    MKAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"loc"];
+    annotationView.canShowCallout = YES;
+    annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    
+    return annotationView;
+}
+
+- (void)mapView: (MKMapView *)mapView annotationView:(nonnull MKAnnotationView *)view calloutAccessoryControlTapped:(nonnull UIControl *)control {
+    
+    self.curAnnotation = view;
+    [self performSegueWithIdentifier:@"MapToEvent" sender:view];
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -197,6 +224,16 @@
         sortEventController.eventObjects = eventsArray;
 
         sortEventController.SearchCriteria = sortCriteria;
+    } else {
+        EventViewController *eventView = segue.destinationViewController;
+        PFObject *cur_Event = [self.annotToEvent objectForKey:self.curAnnotation];
+        eventView.title = cur_Event[@"title"];
+        eventView.address = cur_Event[@"address"];
+        eventView.cost = cur_Event[@"cost"];
+        eventView.eventId = cur_Event[@"objectId"];
+        eventView.startTime = cur_Event[@"startTime"];
+        eventView.endTime = cur_Event[@"endTime"];
+        eventView.desc = cur_Event[@"description"];
     }
 }
 

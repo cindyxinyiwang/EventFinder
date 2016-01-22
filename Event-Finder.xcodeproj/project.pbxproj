@@ -14,6 +14,8 @@
 		75D600E61C4B141800637BBA /* SPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D600E51C4B141800637BBA /* SPAnnotation.m */; };
 		75D600F11C4D70BB00637BBA /* SortEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D600F01C4D70BB00637BBA /* SortEventViewController.m */; };
 		75D600FB1C4DC74B00637BBA /* SortEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D600FA1C4DC74B00637BBA /* SortEventTableViewCell.m */; };
+		75F186D31C51B475006E0CEE /* AddFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F186D21C51B475006E0CEE /* AddFriendsViewController.m */; };
+		75F186D51C51CECB006E0CEE /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F186D41C51CECB006E0CEE /* MapViewAnnotation.m */; };
 		F109EE4C1C4ADEFD00B096D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EE4B1C4ADEFD00B096D2 /* main.m */; };
 		F109EE4F1C4ADEFD00B096D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EE4E1C4ADEFD00B096D2 /* AppDelegate.m */; };
 		F109EE521C4ADEFD00B096D2 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EE511C4ADEFD00B096D2 /* FirstViewController.m */; };
@@ -78,6 +80,10 @@
 		75D600F21C4D70D000637BBA /* SortEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SortEventViewController.h; path = ../SortEventViewController.h; sourceTree = "<group>"; };
 		75D600F91C4DC74B00637BBA /* SortEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortEventTableViewCell.h; sourceTree = "<group>"; };
 		75D600FA1C4DC74B00637BBA /* SortEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortEventTableViewCell.m; sourceTree = "<group>"; };
+		75F186D11C51B474006E0CEE /* AddFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsViewController.h; sourceTree = "<group>"; };
+		75F186D21C51B475006E0CEE /* AddFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsViewController.m; sourceTree = "<group>"; };
+		75F186D41C51CECB006E0CEE /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
+		75F186D61C51CEDC006E0CEE /* MapViewAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
 		F109EE471C4ADEFD00B096D2 /* Event-Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Event-Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F109EE4B1C4ADEFD00B096D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F109EE4D1C4ADEFD00B096D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -217,6 +223,10 @@
 				F109EE4E1C4ADEFD00B096D2 /* AppDelegate.m */,
 				F109EE501C4ADEFD00B096D2 /* FirstViewController.h */,
 				F109EE511C4ADEFD00B096D2 /* FirstViewController.m */,
+				75F186D41C51CECB006E0CEE /* MapViewAnnotation.m */,
+				75F186D61C51CEDC006E0CEE /* MapViewAnnotation.h */,
+				75F186D11C51B474006E0CEE /* AddFriendsViewController.h */,
+				75F186D21C51B475006E0CEE /* AddFriendsViewController.m */,
 				75250CD41C4F1F1800B280F7 /* EventObject.m */,
 				75250CD61C4F21F100B280F7 /* EventObject.h */,
 				75250CD11C4E9BD600B280F7 /* CoreLocationController.m */,
@@ -413,6 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75F186D51C51CECB006E0CEE /* MapViewAnnotation.m in Sources */,
 				F109EEA51C4B017B00B096D2 /* LogInViewController.m in Sources */,
 				F109EE551C4ADEFD00B096D2 /* SecondViewController.m in Sources */,
 				F109EEA21C4AF0C800B096D2 /* CreateEventViewController.m in Sources */,
@@ -429,6 +440,7 @@
 				F1D07B931C4C6A7A002DFEB1 /* EventViewController.m in Sources */,
 				F1D07B981C4C9713002DFEB1 /* FeedTableViewController.m in Sources */,
 				75250CD21C4E9BD600B280F7 /* CoreLocationController.m in Sources */,
+				75F186D31C51B475006E0CEE /* AddFriendsViewController.m in Sources */,
 				F1D07B9E1C4D8C7A002DFEB1 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
