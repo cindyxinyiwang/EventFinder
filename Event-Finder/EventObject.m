@@ -25,6 +25,7 @@
 @synthesize startTime;
 @synthesize endTime;
 @synthesize desc;
+@synthesize size;
 
 
 

@@ -105,8 +105,8 @@
         
     } else if ([self.SearchCriteria isEqualToString:@"Size"]) {
         sortedArray = [self.eventObjects sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            NSString *first = [(EventObject*)obj1 cost];
-            NSString *second = [(EventObject*)obj2 cost];
+            NSString *first = [(EventObject*)obj1 size];
+            NSString *second = [(EventObject*)obj2 size];
             return [first floatValue] >=[second floatValue];
         }];
         
@@ -155,6 +155,9 @@
     cell.costLabel.text = [NSString stringWithFormat:@"Cost: %@", curEvent.cost];
     
     cell.distanceLabel.text = [NSString stringWithFormat:@"Distance: %@",curEvent.distance];
+    cell.sizeLabel.text = [NSString stringWithFormat:@"Size: %@ people", curEvent.size];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 

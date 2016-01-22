@@ -185,6 +185,11 @@
             event.startTime = obj[@"startTime"];
             event.endTime = obj[@"endTime"];
             event.desc = obj[@"description"];
+            
+            // find number of people going
+            PFQuery *goingQuery = [PFQuery queryWithClassName:@"Going"];
+            [goingQuery whereKey:@"event" equalTo:obj];
+            event.size = [NSString stringWithFormat:@"%ld", (long)[goingQuery countObjects]];
 
             [eventsArray addObject:event];
         }
