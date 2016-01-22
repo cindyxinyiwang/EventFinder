@@ -160,11 +160,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     UIAlertView *messageAlert = [[UIAlertView alloc]
                                  initWithTitle:@"Row Selected" message:@"You've selected a row" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
     // Display Alert Message
-    [messageAlert show];
+    [messageAlert show];*/
     
 }
 
@@ -172,6 +173,31 @@
 {
     if ([[segue identifier] isEqualToString:@"sortToEvent"]) {
         EventViewController *eventView = segue.destinationViewController;
+        EventObject *cur_event = self.eventObjects[[self.tableView indexPathForSelectedRow].row];
+        eventView.eventTitle = cur_event.title;
+        eventView.eventId = cur_event.eventId;
+        eventView.startTime = cur_event.startTime;
+        eventView.endTime = cur_event.endTime;
+        eventView.desc = cur_event.desc;
+        eventView.address = cur_event.address;
+        eventView.cost = cur_event.cost;
+        /*
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Event"];
+        [query whereKey:@"objectId" equalTo:cur_event.eventId];
+        NSArray *results = [query findObjects];
+        if (results.count > 0) {
+            PFObject *eventObj = results[0];
+            eventView.eventTitle = cur_event.title;
+            eventView.cost = eventObj[@"cost"];
+            eventView.startTime = eventObj[@"startTime"];
+            eventView.endTime = eventObj[@"endTime"];
+            eventView.desc = eventObj[@"description"];
+            eventView.address = eventObj[@"address"];
+            eventView.eventId = cur_event.eventId;
+        }*/
+        //PFObject *eventObj = [PFObject objectWithoutDataWithClassName:@"Event" objectId:cur_event.eventId];
+        
         
     }
         

@@ -181,6 +181,11 @@
             event.address = obj[@"address"];
             event.cost = obj[@"cost"];
             event.distance = [self getOneDistance:event.address];
+            event.eventId = obj[@"objectId"];
+            event.startTime = obj[@"startTime"];
+            event.endTime = obj[@"endTime"];
+            event.desc = obj[@"description"];
+
             [eventsArray addObject:event];
         }
         
