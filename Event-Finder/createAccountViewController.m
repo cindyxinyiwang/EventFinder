@@ -42,6 +42,7 @@
     newUser[@"lastName"] = self.lastNameTextField.text;
     newUser.email = self.emailTextField.text;
     newUser[@"age"] = [NSNumber numberWithInt:[self.ageTextField.text intValue]];
+    newUser[@"following"] = [NSMutableArray array];
     newUser.username = self.usernameTextField.text;
     if([self.password1TextField.text isEqualToString:self.password2TextField.text]) {
         newUser.password = self.password1TextField.text;

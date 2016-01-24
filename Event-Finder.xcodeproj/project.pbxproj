@@ -40,6 +40,8 @@
 		F109EEA21C4AF0C800B096D2 /* CreateEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EEA11C4AF0C800B096D2 /* CreateEventViewController.m */; };
 		F109EEA51C4B017B00B096D2 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EEA41C4B017B00B096D2 /* LogInViewController.m */; };
 		F109EEA81C4B0CEB00B096D2 /* EventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F109EEA71C4B0CEB00B096D2 /* EventTableViewCell.m */; };
+		F111F2731C555433006D0785 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F111F2721C555433006D0785 /* FriendsViewController.m */; };
+		F111F2761C5555DB006D0785 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F111F2751C5555DB006D0785 /* FriendTableViewCell.m */; };
 		F1D07B901C4C399C002DFEB1 /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D07B8F1C4C399C002DFEB1 /* FeedTableViewCell.m */; };
 		F1D07B931C4C6A7A002DFEB1 /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D07B921C4C6A7A002DFEB1 /* EventViewController.m */; };
 		F1D07B951C4C96C8002DFEB1 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D07B941C4C96C8002DFEB1 /* ParseUI.framework */; };
@@ -116,6 +118,10 @@
 		F109EEA41C4B017B00B096D2 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		F109EEA61C4B0CEB00B096D2 /* EventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTableViewCell.h; sourceTree = "<group>"; };
 		F109EEA71C4B0CEB00B096D2 /* EventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewCell.m; sourceTree = "<group>"; };
+		F111F2711C555433006D0785 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		F111F2721C555433006D0785 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		F111F2741C5555DB006D0785 /* FriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTableViewCell.h; sourceTree = "<group>"; };
+		F111F2751C5555DB006D0785 /* FriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewCell.m; sourceTree = "<group>"; };
 		F1D07B8E1C4C399C002DFEB1 /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
 		F1D07B8F1C4C399C002DFEB1 /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
 		F1D07B911C4C6A7A002DFEB1 /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventViewController.h; sourceTree = "<group>"; };
@@ -224,6 +230,10 @@
 				F109EE531C4ADEFD00B096D2 /* SecondViewController.h */,
 				F109EE541C4ADEFD00B096D2 /* SecondViewController.m */,
 				F109EE561C4ADEFD00B096D2 /* Main.storyboard */,
+				F111F2741C5555DB006D0785 /* FriendTableViewCell.h */,
+				F111F2751C5555DB006D0785 /* FriendTableViewCell.m */,
+				F111F2711C555433006D0785 /* FriendsViewController.h */,
+				F111F2721C555433006D0785 /* FriendsViewController.m */,
 				F1D07B9C1C4D8C7A002DFEB1 /* SettingsViewController.h */,
 				F1D07B9D1C4D8C7A002DFEB1 /* SettingsViewController.m */,
 				F1D07B991C4D7B7A002DFEB1 /* createAccountViewController.h */,
@@ -425,8 +435,10 @@
 				75D600FB1C4DC74B00637BBA /* SortEventTableViewCell.m in Sources */,
 				F109EE521C4ADEFD00B096D2 /* FirstViewController.m in Sources */,
 				F1D07B9B1C4D7B7A002DFEB1 /* createAccountViewController.m in Sources */,
+				F111F2731C555433006D0785 /* FriendsViewController.m in Sources */,
 				F109EE4C1C4ADEFD00B096D2 /* main.m in Sources */,
 				F1D07B931C4C6A7A002DFEB1 /* EventViewController.m in Sources */,
+				F111F2761C5555DB006D0785 /* FriendTableViewCell.m in Sources */,
 				F1D07B981C4C9713002DFEB1 /* FeedTableViewController.m in Sources */,
 				75250CD21C4E9BD600B280F7 /* CoreLocationController.m in Sources */,
 				F1D07B9E1C4D8C7A002DFEB1 /* SettingsViewController.m in Sources */,
