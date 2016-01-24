@@ -26,7 +26,8 @@
 @property (nonatomic) float cur_longitude;
  */
 @property (strong, nonatomic) CLLocation *curLocation;
-@property (strong, nonatomic) NSMutableDictionary *annotToEvent;
+//@property (strong, nonatomic) NSMutableDictionary *annotToEvent;
+@property (strong, nonatomic) NSString *annoEventTitle;
 
 @property (strong, nonatomic) MKAnnotationView *curAnnotation;
 
@@ -121,7 +122,7 @@
                          [self.mapView addAnnotation:annotation];
                          
                          // update annotation map
-                         [self.annotToEvent setObject:event forKey:annotation];
+                         //self.annoEventId = event[@"objectId"];
                      }
                  }
      ];
@@ -143,9 +144,14 @@
     return annotationView;
 }
 
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    MapViewAnnotation *selectedAnnotation = view.annotation; // This will give the annotation.
+    self.annoEventTitle = selectedAnnotation.title;
+}
+
 - (void)mapView: (MKMapView *)mapView annotationView:(nonnull MKAnnotationView *)view calloutAccessoryControlTapped:(nonnull UIControl *)control {
     
-    self.curAnnotation = view;
     [self performSegueWithIdentifier:@"MapToEvent" sender:view];
 }
 
@@ -226,7 +232,10 @@
         sortEventController.SearchCriteria = sortCriteria;
     } else {
         EventViewController *eventView = segue.destinationViewController;
-        PFObject *cur_Event = [self.annotToEvent objectForKey:self.curAnnotation];
+        PFQuery *query = [PFQuery queryWithClassName:@"Event"];
+        [query whereKey:@"title" equalTo:self.annoEventTitle];
+        NSArray *objects = [query findObjects];
+        PFObject *cur_Event = objects[0];
         eventView.title = cur_Event[@"title"];
         eventView.address = cur_Event[@"address"];
         eventView.cost = cur_Event[@"cost"];
