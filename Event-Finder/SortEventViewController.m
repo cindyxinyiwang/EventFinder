@@ -8,14 +8,17 @@
 
 #import "SortEventViewController.h"
 #import "SortEventTableViewCell.h"
+#import "EventViewController.h"
 #import "EventObject.h"
 #import <Parse/Parse.h>
 
 @interface SortEventViewController ()
 {
-    
+    NSArray *_pickerData;
 }
 @property (strong, nonatomic) NSString *className;
+
+@property (weak, nonatomic) IBOutlet UITextField *sortByTextField;
 
 @end
 
@@ -36,10 +39,59 @@
     
     self.SortEventTableView.dataSource = self;
     self.SortEventTableView.delegate = self;
-    [self.SortEventTableView reloadData];
+    
+    // Initialize picker data
+    _pickerData = @[@"Proximity", @"Price", @"Size"];
+    
+    UIPickerView *picker = [[UIPickerView alloc] init];
+    picker.dataSource = self;
+    picker.delegate = self;
+    self.sortByTextField.inputView = picker;
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self.SortEventTableView addSubview:refreshControl];
      
 }
 
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    [self.SortEventTableView reloadData];
+    [refreshControl endRefreshing];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [self.SortEventTableView reloadData];
+}
+
+// picker view setup
+// The number of columns of data
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+// The number of rows of data
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return _pickerData.count;
+}
+
+// The data to return for the row and component (column) that's being passed in
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return _pickerData[row];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.sortByTextField.text = _pickerData[row];
+    [self.sortByTextField resignFirstResponder];
+    
+    self.SearchCriteria = _pickerData[row];
+    self.eventObjects = [self getEvents];
+    
+    [self.SortEventTableView reloadData];
+    [self.tableView reloadData];
+}
 
 -(NSArray*) getEvents {
     NSArray *sortedArray;
@@ -53,8 +105,8 @@
         
     } else if ([self.SearchCriteria isEqualToString:@"Size"]) {
         sortedArray = [self.eventObjects sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            NSString *first = [(EventObject*)obj1 cost];
-            NSString *second = [(EventObject*)obj2 cost];
+            NSString *first = [(EventObject*)obj1 size];
+            NSString *second = [(EventObject*)obj2 size];
             return [first floatValue] >=[second floatValue];
         }];
         
@@ -72,9 +124,7 @@
     //[self.SortEventTableView reloadData];
 }
 
--(void) getDistanceArray {
-    
-}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -105,8 +155,58 @@
     cell.costLabel.text = [NSString stringWithFormat:@"Cost: %@", curEvent.cost];
     
     cell.distanceLabel.text = [NSString stringWithFormat:@"Distance: %@",curEvent.distance];
+    cell.sizeLabel.text = [NSString stringWithFormat:@"Size: %@ people", curEvent.size];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    /*
+    UIAlertView *messageAlert = [[UIAlertView alloc]
+                                 initWithTitle:@"Row Selected" message:@"You've selected a row" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    // Display Alert Message
+    [messageAlert show];*/
+    
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"sortToEvent"]) {
+        EventViewController *eventView = segue.destinationViewController;
+        EventObject *cur_event = self.eventObjects[[self.tableView indexPathForSelectedRow].row];
+        eventView.eventTitle = cur_event.title;
+        eventView.eventId = cur_event.eventId;
+        eventView.startTime = cur_event.startTime;
+        eventView.endTime = cur_event.endTime;
+        eventView.desc = cur_event.desc;
+        eventView.address = cur_event.address;
+        eventView.cost = cur_event.cost;
+        /*
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Event"];
+        [query whereKey:@"objectId" equalTo:cur_event.eventId];
+        NSArray *results = [query findObjects];
+        if (results.count > 0) {
+            PFObject *eventObj = results[0];
+            eventView.eventTitle = cur_event.title;
+            eventView.cost = eventObj[@"cost"];
+            eventView.startTime = eventObj[@"startTime"];
+            eventView.endTime = eventObj[@"endTime"];
+            eventView.desc = eventObj[@"description"];
+            eventView.address = eventObj[@"address"];
+            eventView.eventId = cur_event.eventId;
+        }*/
+        //PFObject *eventObj = [PFObject objectWithoutDataWithClassName:@"Event" objectId:cur_event.eventId];
+        
+        
+    }
+        
+}
+
+
 
 
 

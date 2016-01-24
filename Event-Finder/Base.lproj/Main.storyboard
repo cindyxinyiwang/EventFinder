@@ -5,6 +5,31 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
+        <!--Add Friends-->
+        <scene sceneID="QDm-GP-J8Z">
+            <objects>
+                <viewController id="HPf-8k-2Jb" userLabel="Add Friends" customClass="AddFriendsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JoZ-Uc-moc"/>
+                        <viewControllerLayoutGuide type="bottom" id="DiO-Bl-a0t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fvK-hQ-Hwh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DfI-JT-ek1">
+                                <rect key="frame" x="67.5" y="270" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KJZ-6n-vxL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1883.5" y="-1923.5"/>
+        </scene>
         <!--First View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
@@ -20,21 +45,18 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KwK-1C-p1R">
                                 <rect key="frame" x="0.0" y="109" width="375" height="457"/>
                             </mapView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oj6-vV-1Ej">
-                                <rect key="frame" x="199" y="63" width="169" height="38"/>
-                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25R-wG-nOO">
+                                <rect key="frame" x="20" y="71" width="110" height="30"/>
+                                <state key="normal" title="Add Friends"/>
+                                <connections>
+                                    <segue destination="HPf-8k-2Jb" kind="show" id="I9v-WG-PDb"/>
+                                </connections>
+                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sort By...." borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pIk-lK-HPZ">
-                                <rect key="frame" x="82" y="67" width="97" height="30"/>
+                                <rect key="frame" x="258" y="71" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRh-JM-KIq">
-                                <rect key="frame" x="28" y="67" width="30" height="30"/>
-                                <state key="normal" title="Sort"/>
-                                <connections>
-                                    <segue destination="WT3-L6-34d" kind="show" identifier="sortBySegue" id="UWO-Gs-e7n"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -43,12 +65,13 @@
                     <connections>
                         <outlet property="mapView" destination="KwK-1C-p1R" id="1Z5-px-75u"/>
                         <outlet property="sortByTextField" destination="pIk-lK-HPZ" id="YD0-iB-qqZ"/>
-                        <outlet property="sortPicker" destination="oj6-vV-1Ej" id="T6t-i7-vLe"/>
+                        <segue destination="WT3-L6-34d" kind="show" identifier="sortBySegue" id="fKu-PG-aEM"/>
+                        <segue destination="prn-H3-Eno" kind="show" identifier="MapToEvent" id="oOo-4b-G1v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2130.5" y="-781.5"/>
+            <point key="canvasLocation" x="1504.5" y="-1056.5"/>
         </scene>
         <!--My Events-->
         <scene sceneID="wg7-f3-ORb">
@@ -227,7 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w5b-dZ-O8j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2130.5" y="855.5"/>
+            <point key="canvasLocation" x="2610.5" y="799.5"/>
         </scene>
         <!--Create Event-->
         <scene sceneID="Cx6-sD-Sf1">
@@ -524,6 +547,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="testBgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="XPh-gB-GvS">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i4j-6m-nap">
                                 <rect key="frame" x="20" y="262" width="335" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -554,7 +580,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Log In" id="RTq-ZQ-t6e">
                         <barButtonItem key="rightBarButtonItem" title="Create User" id="X4o-cK-8W9">
@@ -838,20 +864,26 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="101.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpv-uo-FGI" userLabel="Name">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpv-uo-FGI" userLabel="Name">
                                             <rect key="frame" x="47" y="8" width="205" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aik-yN-o2J" userLabel="Price">
+                                            <rect key="frame" x="47" y="37" width="172" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aik-yN-o2J" userLabel="Price">
-                                            <rect key="frame" x="47" y="37" width="205" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAq-Bi-STd" userLabel="Distance">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAq-Bi-STd" userLabel="Distance">
                                             <rect key="frame" x="47" y="72" width="205" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6y-eZ-Ofq">
+                                            <rect key="frame" x="238" y="36" width="129" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -861,7 +893,9 @@
                                 <connections>
                                     <outlet property="costLabel" destination="Aik-yN-o2J" id="znp-Go-d3Z"/>
                                     <outlet property="distanceLabel" destination="TAq-Bi-STd" id="Fd2-Nc-7M5"/>
+                                    <outlet property="sizeLabel" destination="n6y-eZ-Ofq" id="QxV-Wj-hwS"/>
                                     <outlet property="titleLabel" destination="lpv-uo-FGI" id="DAe-0R-40D"/>
+                                    <segue destination="prn-H3-Eno" kind="show" identifier="sortToEvent" id="hhk-j8-61f"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -870,16 +904,26 @@
                             <outlet property="delegate" destination="WT3-L6-34d" id="Y4x-Ov-mQU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="SortEvent" id="PFq-PR-QWg"/>
+                    <navigationItem key="navigationItem" title="SortEvent" id="PFq-PR-QWg">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="JTY-V5-yqb">
+                            <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sort by..." borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="d3n-gS-nta">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="SortEventTableView" destination="0A8-On-NsH" id="QIv-x7-PmD"/>
+                        <outlet property="sortByTextField" destination="d3n-gS-nta" id="2zP-Wr-AJg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pLN-6y-4nd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2659.5" y="-781.5"/>
+            <point key="canvasLocation" x="2645.5" y="-1080.5"/>
         </scene>
         <!--Explore-->
         <scene sceneID="WLE-Vg-ipY">
@@ -905,8 +949,10 @@
     <resources>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
+        <image name="testBgroundImage" width="750" height="1334"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gdk-H0-MdY"/>
+        <segue reference="hI7-qX-4Ri"/>
+        <segue reference="hhk-j8-61f"/>
     </inferredMetricsTieBreakers>
 </document>

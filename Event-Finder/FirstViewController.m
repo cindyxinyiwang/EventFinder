@@ -8,7 +8,9 @@
 
 #import "FirstViewController.h"
 #import "SortEventViewController.h"
+#import "EventViewController.h"
 #include "EventObject.h"
+#import "MapViewAnnotation.h"
 
 #import <Parse/Parse.h>
 
@@ -24,7 +26,10 @@
 @property (nonatomic) float cur_longitude;
  */
 @property (strong, nonatomic) CLLocation *curLocation;
+//@property (strong, nonatomic) NSMutableDictionary *annotToEvent;
+@property (strong, nonatomic) NSString *annoEventTitle;
 
+@property (strong, nonatomic) MKAnnotationView *curAnnotation;
 
 @end
 
@@ -91,13 +96,25 @@
     PFQuery *eventsQuery = [PFQuery queryWithClassName:@"Event"];
     NSArray *addrArray = [eventsQuery findObjects];
     for (PFObject *addr in addrArray) {
-        [self loadAdrressOnMap:addr[@"address"]];
+        if ([self isAddress:addr[@"address"] withinDistance:12]) {
+            [self loadAdrressOnMap:addr];
+        }
     }
 }
 
-- (void) loadAdrressOnMap: (NSString *) addr
+- (BOOL) isAddress: (NSString *) addr withinDistance: (int) dist
+{
+    NSString *distToCurLoc = [self getOneDistance:addr];
+    if ([distToCurLoc integerValue] < dist){
+        return FALSE;
+    }
+    return TRUE;
+}
+
+- (void) loadAdrressOnMap: (PFObject *) event
 {
     //NSLog(@"decoding %@", addr);
+    NSString* addr = event[@"address"];
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:addr
                  completionHandler:^(NSArray* placemarks, NSError* error){
@@ -111,7 +128,12 @@
                          region.span.latitudeDelta /= 8.0;
                          
                          [self.mapView setRegion:region animated:YES];
-                         [self.mapView addAnnotation:placemark];
+                         
+                         MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithTitle:event[@"title"] AndCoordinate:placemark.location.coordinate];
+                         [self.mapView addAnnotation:annotation];
+                         
+                         // update annotation map
+                         //self.annoEventId = event[@"objectId"];
                      }
                  }
      ];
@@ -120,6 +142,28 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    MKAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"loc"];
+    annotationView.canShowCallout = YES;
+    annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    
+    return annotationView;
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    MapViewAnnotation *selectedAnnotation = view.annotation; // This will give the annotation.
+    self.annoEventTitle = selectedAnnotation.title;
+}
+
+- (void)mapView: (MKMapView *)mapView annotationView:(nonnull MKAnnotationView *)view calloutAccessoryControlTapped:(nonnull UIControl *)control {
+    
+    [self performSegueWithIdentifier:@"MapToEvent" sender:view];
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -181,12 +225,35 @@
             event.address = obj[@"address"];
             event.cost = obj[@"cost"];
             event.distance = [self getOneDistance:event.address];
+            event.eventId = obj[@"objectId"];
+            event.startTime = obj[@"startTime"];
+            event.endTime = obj[@"endTime"];
+            event.desc = obj[@"description"];
+            
+            // find number of people going
+            PFQuery *goingQuery = [PFQuery queryWithClassName:@"Going"];
+            [goingQuery whereKey:@"event" equalTo:obj];
+            event.size = [NSString stringWithFormat:@"%ld", (long)[goingQuery countObjects]];
+
             [eventsArray addObject:event];
         }
         
         sortEventController.eventObjects = eventsArray;
 
         sortEventController.SearchCriteria = sortCriteria;
+    } else {
+        EventViewController *eventView = segue.destinationViewController;
+        PFQuery *query = [PFQuery queryWithClassName:@"Event"];
+        [query whereKey:@"title" equalTo:self.annoEventTitle];
+        NSArray *objects = [query findObjects];
+        PFObject *cur_Event = objects[0];
+        eventView.title = cur_Event[@"title"];
+        eventView.address = cur_Event[@"address"];
+        eventView.cost = cur_Event[@"cost"];
+        eventView.eventId = cur_Event[@"objectId"];
+        eventView.startTime = cur_Event[@"startTime"];
+        eventView.endTime = cur_Event[@"endTime"];
+        eventView.desc = cur_Event[@"description"];
     }
 }
 

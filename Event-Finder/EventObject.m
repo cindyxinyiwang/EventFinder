@@ -21,6 +21,12 @@
 @synthesize cost;
 @synthesize address;
 @synthesize distance;
+@synthesize eventId;
+@synthesize startTime;
+@synthesize endTime;
+@synthesize desc;
+@synthesize size;
+
 
 
 @end

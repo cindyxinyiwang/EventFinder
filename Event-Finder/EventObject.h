@@ -12,6 +12,12 @@
 @property NSString *address;
 @property NSString *cost;
 @property NSString *distance;
+@property NSString *eventId;
+@property NSString *size;
+
+@property (nonatomic, strong) NSDate *startTime;
+@property (nonatomic, strong) NSDate *endTime;
+@property (nonatomic, strong) NSString *desc;
 
 @end
 
