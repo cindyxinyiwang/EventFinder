@@ -96,8 +96,19 @@
     PFQuery *eventsQuery = [PFQuery queryWithClassName:@"Event"];
     NSArray *addrArray = [eventsQuery findObjects];
     for (PFObject *addr in addrArray) {
-        [self loadAdrressOnMap:addr];
+        if ([self isAddress:addr[@"address"] withinDistance:12]) {
+            [self loadAdrressOnMap:addr];
+        }
     }
+}
+
+- (BOOL) isAddress: (NSString *) addr withinDistance: (int) dist
+{
+    NSString *distToCurLoc = [self getOneDistance:addr];
+    if ([distToCurLoc integerValue] < dist){
+        return FALSE;
+    }
+    return TRUE;
 }
 
 - (void) loadAdrressOnMap: (PFObject *) event
