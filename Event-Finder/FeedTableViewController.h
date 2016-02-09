@@ -8,6 +8,6 @@
 
 #import <ParseUI/ParseUI.h>
 
-@interface FeedTableViewController : PFQueryTableViewController
+@interface FeedTableViewController : UIViewController
 
 @end

@@ -42,6 +42,8 @@
             [currentUser saveInBackground];
         }
     }
+    self.followLabel.enabled = NO;
+    [self.followLabel setTitle:@"Following" forState:UIControlStateNormal];
 }
 
 @end

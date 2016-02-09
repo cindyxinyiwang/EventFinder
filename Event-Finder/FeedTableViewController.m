@@ -9,7 +9,10 @@
 #import "FeedTableViewController.h"
 #import <Parse/Parse.h>
 
-@interface FeedTableViewController ()
+@interface FeedTableViewController () {
+    NSArray *queryEventResults;
+}
+@property (strong, nonatomic) IBOutlet UITableView *eventTableView;
 
 @end
 
@@ -17,6 +20,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    PFQuery *query = [PFQuery queryWithClassName:@"Going"];
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"guest"];
+    [query includeKey:@"event"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable goingEvents, NSError * _Nullable error) {
+        queryEventResults = goingEvents;
+        [self.eventTableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,25 +43,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    PFQuery *query = [PFQuery queryWithClassName:@"Going"];
-    return [query countObjects];
-}
-
--(instancetype)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if(self) {
-        self.parseClassName = @"Going";
-        self.pullToRefreshEnabled = YES;
-        self.paginationEnabled = NO;
-        self.objectsPerPage = 25;
+    if(queryEventResults != nil) {
+        return [queryEventResults count];
+    } else {
+        return 0;
     }
-    return self;
-}
-
--(PFQuery *)queryForTable {
-    PFQuery *query = [PFQuery queryWithClassName:@"Going"];
-    [query orderByDescending:@"createdAt"];
-    return query;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -58,20 +58,9 @@
                                       reuseIdentifier:CellIdentifier];
     }
     
-    // Configure the cell
-    PFQuery *query = [PFQuery queryWithClassName:@"Going"];
-    [query orderByDescending:@"createdAt"];
-    [query includeKey:@"guest"];
-    [query includeKey:@"event"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable goingEvents, NSError * _Nullable error) {
-        if(error) {
-            NSLog(@"Error: %@", error);
-        } else {
-            PFObject *goingEvent = [goingEvents objectAtIndex:indexPath.row];
-            PFObject *event = goingEvent[@"event"];
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ is going to %@", [[goingEvent objectForKey:@"guest"] objectForKey:@"username"], event[@"title"]];
-        }
-    }];
+    PFObject *goingEvent = [queryEventResults objectAtIndex:indexPath.row];
+    PFObject *event = goingEvent[@"event"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ is going to %@", [[goingEvent objectForKey:@"guest"] objectForKey:@"username"], event[@"title"]];
     
     return cell;
 }

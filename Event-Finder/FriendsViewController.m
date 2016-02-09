@@ -12,6 +12,7 @@
 
 @interface FriendsViewController () {
     NSArray *users;
+    PFUser *currentUser;
 }
 
 @property (strong, nonatomic) IBOutlet UIButton *followButton;
@@ -31,6 +32,8 @@
     PFQuery *query = [PFUser query];
     // Additional pruning of users to display done here
     self->users = [query findObjects];
+    
+    self->currentUser = [PFUser currentUser];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,8 +54,17 @@
     FriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     cell.nameLabel.text = [self->users objectAtIndex:indexPath.row][@"username"];
-    [cell.followLabel setTitle:@"test" forState:UIControlStateNormal];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    // Determine if user is following this person
+    [cell.followLabel setTitle:@"Follow" forState:UIControlStateNormal];
+    NSArray *following = [self->currentUser objectForKey:@"following"];
+    PFUser *userForRow = [self->users objectAtIndex:indexPath.row];
+    NSString *id = userForRow.objectId;
+    if([following containsObject:id]) {
+        cell.followLabel.enabled = NO;
+        [cell.followLabel setTitle:@"Following" forState:UIControlStateNormal];
+    }
     
     return cell;
 }
