@@ -11,7 +11,10 @@
 #import "EventTableViewCell.h"
 #import "EventViewController.h"
 
-@interface SecondViewController ()
+@interface SecondViewController () {
+    NSArray *myEvents;
+    NSArray *goingToEvents;
+}
 
 @end
 
@@ -34,7 +37,20 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self.MyEventTableView reloadData];
+    PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
+    [eventQuery whereKey:@"createdBy" equalTo:[PFUser currentUser]];
+    [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *events, NSError *error) {
+        myEvents = events;
+        [self.MyEventTableView reloadData];
+    }];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Going"];
+    [query whereKey:@"guest" equalTo:[PFUser currentUser]];
+    [query includeKey:@"event"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *events, NSError *error) {
+        goingToEvents = events;
+        [self.MyEventTableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,14 +64,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(section == 0) {
-        PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
-        [eventQuery whereKey:@"createdBy" equalTo:[PFUser currentUser]];
-        return [eventQuery countObjects];
+        if(myEvents != nil) {
+            return [myEvents count];
+        }
     } else {
-        PFQuery *query = [PFQuery queryWithClassName:@"Going"];
-        [query whereKey:@"guest" equalTo:[PFUser currentUser]];
-        return [query countObjects];
+        if(goingToEvents != nil) {
+            return [goingToEvents count];
+        }
     }
+    return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -75,30 +92,16 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     if(indexPath.section == 0) {
-        PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
-        [eventQuery whereKey:@"createdBy" equalTo:[PFUser currentUser]];
-        [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *events, NSError *error) {
-            PFObject *event = [events objectAtIndex:indexPath.row];
-            cell.titleLabel.text = event[@"title"];
-            cell.addressLabel.text = event[@"address"];
-            cell.costLabel.text = [NSString stringWithFormat:@"Cost: $%@", event[@"cost"]];
-        }];
+        PFObject *event = [myEvents objectAtIndex:indexPath.row];
+        cell.titleLabel.text = event[@"title"];
+        cell.addressLabel.text = event[@"address"];
+        cell.costLabel.text = [NSString stringWithFormat:@"Cost: $%@", event[@"cost"]];
     } else {
-        PFQuery *query = [PFQuery queryWithClassName:@"Going"];
-        [query orderByDescending:@"startTime"];
-        [query whereKey:@"guest" equalTo:[PFUser currentUser]];
-        [query includeKey:@"event"];
-        [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable goingEvents, NSError * _Nullable error) {
-            if(error) {
-                NSLog(@"Error: %@", error);
-            } else {
-                PFObject *goingEvent = [goingEvents objectAtIndex:indexPath.row];
-                PFObject *event = goingEvent[@"event"];
-                cell.titleLabel.text = event[@"title"];
-                cell.addressLabel.text = event[@"address"];
-                cell.costLabel.text = [NSString stringWithFormat:@"Cost: $%@", event[@"cost"]];
-            }
-         }];
+        PFObject *goingEvent = [goingToEvents objectAtIndex:indexPath.row];
+        PFObject *event = goingEvent[@"event"];
+        cell.titleLabel.text = event[@"title"];
+        cell.addressLabel.text = event[@"address"];
+        cell.costLabel.text = [NSString stringWithFormat:@"Cost: $%@", event[@"cost"]];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
