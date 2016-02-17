@@ -198,7 +198,7 @@
             event.address = obj[@"address"]; 
             event.cost = obj[@"cost"];
             //event.distance = [self getOneDistance:event.address];
-            event.eventId = obj[@"objectId"];
+            event.eventId = obj.objectId;
             event.startTime = obj[@"startTime"];
             event.endTime = obj[@"endTime"];
             event.desc = obj[@"description"];
@@ -225,7 +225,7 @@
         eventView.title = cur_Event[@"title"];
         //eventView.address = cur_Event[@"address"];
         eventView.cost = cur_Event[@"cost"];
-        eventView.eventId = cur_Event[@"objectId"];
+        eventView.eventId = cur_Event.objectId;
         eventView.startTime = cur_Event[@"startTime"];
         eventView.endTime = cur_Event[@"endTime"];
         eventView.desc = cur_Event[@"description"];
