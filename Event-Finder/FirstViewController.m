@@ -94,11 +94,12 @@
 - (void)loadEventsOnMap {
     //NSString *location = @"450 Serra Mall, Stanford, CA 94305";
     PFQuery *eventsQuery = [PFQuery queryWithClassName:@"Event"];
-    NSArray *addrArray = [eventsQuery findObjects];
-    for (PFObject *addr in addrArray) {
-        if ([self isAddress:addr[@"address"] withinDistance:12]) {
-            [self loadAdrressOnMap:addr];
-        }
+    NSArray *eventArray = [eventsQuery findObjects];
+    for(PFObject *event in eventArray) {
+        PFGeoPoint *point = event[@"location"];
+        CLLocationCoordinate2D location = CLLocationCoordinate2DMake(point.latitude, point.longitude);
+        MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithTitle:event[@"title"] AndCoordinate:location];
+        [self.mapView addAnnotation:annotation];
     }
 }
 
@@ -222,7 +223,7 @@
         for (PFObject *obj in objects) {
             EventObject *event = [[EventObject alloc] init];
             event.title = obj[@"title"];
-            event.address = obj[@"address"];
+            event.address = obj[@"address"]; 
             event.cost = obj[@"cost"];
             event.distance = [self getOneDistance:event.address];
             event.eventId = obj[@"objectId"];
@@ -241,6 +242,8 @@
         sortEventController.eventObjects = eventsArray;
 
         sortEventController.SearchCriteria = sortCriteria;
+    } else if ([[segue identifier] isEqualToString:@"addFriendsSegue"]) {
+        // Do Nothing
     } else {
         EventViewController *eventView = segue.destinationViewController;
         PFQuery *query = [PFQuery queryWithClassName:@"Event"];

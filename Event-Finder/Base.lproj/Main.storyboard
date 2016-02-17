@@ -49,7 +49,7 @@
                                 <rect key="frame" x="20" y="71" width="110" height="30"/>
                                 <state key="normal" title="Add Friends"/>
                                 <connections>
-                                    <segue destination="HPf-8k-2Jb" kind="show" id="I9v-WG-PDb"/>
+                                    <segue destination="Xda-TK-iqy" kind="show" identifier="addFriendsSegue" id="wug-RM-IXC"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sort By...." borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pIk-lK-HPZ">
@@ -90,7 +90,7 @@
                                 <color key="backgroundColor" red="0.40000000000000002" green="0.85098039219999999" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myEventCell" id="gch-mi-ATO" customClass="EventTableViewCell">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="115"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gch-mi-ATO" id="4T8-gg-vmt">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="114.5"/>
@@ -386,7 +386,7 @@
                         <color key="sectionIndexBackgroundColor" red="0.40000000000000002" green="0.85098039219999999" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="feedCell" id="PO8-b4-EmX">
-                                <rect key="frame" x="0.0" y="92" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PO8-b4-EmX" id="QZF-5i-BBQ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
@@ -517,7 +517,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendCell" rowHeight="90" id="jff-ll-Xdt" customClass="FriendTableViewCell">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="90"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jff-ll-Xdt" id="6U8-fz-Zt0">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
@@ -989,6 +989,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gdk-H0-MdY"/>
-        <segue reference="xlG-aH-qgd"/>
+        <segue reference="wug-RM-IXC"/>
+        <segue reference="oOo-4b-G1v"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -128,6 +128,8 @@
                 destinationViewController.eventId = event.objectId;
                 [destinationViewController viewDidLoad];
             }];
+        } else if ([segue.identifier isEqualToString:@"addFriendsSegue"]) {
+            // Do nothing
         } else {
             PFQuery *query = [PFQuery queryWithClassName:@"Going"];
             [query orderByDescending:@"startTime"];
