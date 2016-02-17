@@ -94,13 +94,13 @@
     if(indexPath.section == 0) {
         PFObject *event = [myEvents objectAtIndex:indexPath.row];
         cell.titleLabel.text = event[@"title"];
-        cell.addressLabel.text = event[@"address"];
+        cell.addressLabel.text = @"";
         cell.costLabel.text = [NSString stringWithFormat:@"Cost: $%@", event[@"cost"]];
     } else {
         PFObject *goingEvent = [goingToEvents objectAtIndex:indexPath.row];
         PFObject *event = goingEvent[@"event"];
         cell.titleLabel.text = event[@"title"];
-        cell.addressLabel.text = event[@"address"];
+        cell.addressLabel.text = @"";
         cell.costLabel.text = [NSString stringWithFormat:@"Cost: $%@", event[@"cost"]];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -120,7 +120,7 @@
             [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *events, NSError *error) {
                 PFObject *event = [events objectAtIndex:indexPath.row];
                 destinationViewController.eventTitle = event[@"title"];
-                destinationViewController.address = event[@"address"];
+                //destinationViewController.address = event[@"address"];
                 destinationViewController.cost = event[@"cost"];
                 destinationViewController.startTime = event[@"endTime"];
                 destinationViewController.endTime = event[@"startTime"];
@@ -142,7 +142,7 @@
                     PFObject *goingEvent = [goingEvents objectAtIndex:indexPath.row];
                     PFObject *event = goingEvent[@"event"];
                     destinationViewController.eventTitle = event[@"title"];
-                    destinationViewController.address = event[@"address"];
+                    //destinationViewController.address = event[@"address"];
                     destinationViewController.cost = event[@"cost"];
                     destinationViewController.startTime = event[@"endTime"];
                     destinationViewController.endTime = event[@"startTime"];

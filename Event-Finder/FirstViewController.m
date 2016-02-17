@@ -112,34 +112,6 @@
     return TRUE;
 }
 
-- (void) loadAdrressOnMap: (PFObject *) event
-{
-    //NSLog(@"decoding %@", addr);
-    NSString* addr = event[@"address"];
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:addr
-                 completionHandler:^(NSArray* placemarks, NSError* error){
-                     if (placemarks && placemarks.count > 0) {
-                         CLPlacemark *topResult = [placemarks objectAtIndex:0];
-                         MKPlacemark *placemark = [[MKPlacemark alloc] initWithPlacemark:topResult];
-                         
-                         MKCoordinateRegion region = self.mapView.region;
-                         region.center = placemark.region.center;
-                         region.span.longitudeDelta /= 8.0;
-                         region.span.latitudeDelta /= 8.0;
-                         
-                         [self.mapView setRegion:region animated:YES];
-                         
-                         MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithTitle:event[@"title"] AndCoordinate:placemark.location.coordinate];
-                         [self.mapView addAnnotation:annotation];
-                         
-                         // update annotation map
-                         //self.annoEventId = event[@"objectId"];
-                     }
-                 }
-     ];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -225,7 +197,7 @@
             event.title = obj[@"title"];
             event.address = obj[@"address"]; 
             event.cost = obj[@"cost"];
-            event.distance = [self getOneDistance:event.address];
+            //event.distance = [self getOneDistance:event.address];
             event.eventId = obj[@"objectId"];
             event.startTime = obj[@"startTime"];
             event.endTime = obj[@"endTime"];
@@ -251,7 +223,7 @@
         NSArray *objects = [query findObjects];
         PFObject *cur_Event = objects[0];
         eventView.title = cur_Event[@"title"];
-        eventView.address = cur_Event[@"address"];
+        //eventView.address = cur_Event[@"address"];
         eventView.cost = cur_Event[@"cost"];
         eventView.eventId = cur_Event[@"objectId"];
         eventView.startTime = cur_Event[@"startTime"];

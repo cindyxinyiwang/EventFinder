@@ -989,7 +989,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gdk-H0-MdY"/>
-        <segue reference="wug-RM-IXC"/>
         <segue reference="oOo-4b-G1v"/>
+        <segue reference="wug-RM-IXC"/>
     </inferredMetricsTieBreakers>
 </document>

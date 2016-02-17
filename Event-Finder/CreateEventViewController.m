@@ -71,7 +71,6 @@
         event[@"startTime"] = self.startTime.date;
         event[@"endTime"] = self.endTime.date;
         event[@"description"] = self.descriptionText.text;
-        //event[@"address"] = self.addressText.text;
         
         CLLocationCoordinate2D location = [self getLocationFromAddressString:self.addressText.text];
         PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLatitude:location.latitude longitude:location.longitude];
